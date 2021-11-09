@@ -16,9 +16,9 @@
         </a>
         <div class="dropdown-menu dropdown-menu-end">
           @role('mahasiswa')
-          <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
+          <a class="dropdown-item" href="#"><i data-feather="user"></i> Akun</a>
           @endrole
-          <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+          <a class="dropdown-item" href="{{ route('user-change-password') }}"><i data-feather="settings"></i> Password</a>
           <div class="dropdown-divider"></div>
           <div class="dropdown-item">
             <form action="{{ route('logout') }}" method="post">

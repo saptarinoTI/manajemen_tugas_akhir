@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Mahasiswa\SeminarHasilController;
 
 use App\Http\Controllers\Auth\AddEmailController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Mahasiswa\Datadiri\DataController;
 use App\Http\Controllers\Mahasiswa\DataDiriController;
@@ -40,7 +41,8 @@ Route::get('/', function () {
 Route::get('/add-email', [AddEmailController::class, 'index'])->name('add-email');
 Route::post('/add-email', [AddEmailController::class, 'store'])->name('add-email.store');
 // Update Password
-
+Route::get('/rubah-password', [ResetPasswordController::class, 'index'])->name('user-change-password');
+Route::patch('/rubah-password', [ResetPasswordController::class, 'update'])->name('user-change-password.update');
 // Dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
 Route::middleware(['auth', 'verified', 'role:admin|superadmin'])->group(function () {
