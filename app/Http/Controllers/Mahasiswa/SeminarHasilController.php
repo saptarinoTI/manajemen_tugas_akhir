@@ -47,8 +47,8 @@ class SeminarHasilController extends Controller
         $file->laporan_kp = $this->uploadFile($request, 'laporan_kp', 'semhas/laporan_kp', $nim);
         $file->keuangan = $this->uploadFile($request, 'keuangan', 'semhas/keuangan', $nim);
         $file->konsultasi = $this->uploadFile($request, 'konsultasi', 'semhas/konsultasi', $nim);
-        $file->keterangan = "silahkan bertemu prodi teknik informatika, untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.";
-        $file->status = 'pending';
+        // $file->keterangan = "silahkan bertemu prodi teknik informatika, untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.";
+        // $file->status = 'pending';
         $seminar = $file->save();
 
         if ($seminar) {
@@ -109,8 +109,8 @@ class SeminarHasilController extends Controller
             $save_file = $file_request->storeAs('semhas/konsultasi', $nim . '.' . $extension, 'public');
             $seminar->update(['konsultasi' => $save_file]);
         }
-        $seminar->status = 'pending';
-        $seminar->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.';
+        // $seminar->status = 'pending';
+        // $seminar->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.';
         $seminar->updated_at = date(now());
         $seminar->save();
         Alert::success('Berhasil', 'Data seminar berhasil diubah!');

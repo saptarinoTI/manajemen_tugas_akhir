@@ -71,8 +71,8 @@ class PendadaranController extends Controller
         $file->ktp = $this->uploadFile($request, 'ktp', 'pendadaran/ktp', $nim);
         $file->akte = $this->uploadFile($request, 'akte', 'pendadaran/akte', $nim);
         $file->foto = $this->uploadFile($request, 'foto', 'pendadaran/foto', $nim);
-        $file->status = 'pending';
-        $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
+        // $file->status = 'pending';
+        // $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
         $file->save();
 
         Alert::success('Berhasil', 'Data pendaftaran pendadaran berhasil ditambahkan!');
@@ -166,8 +166,8 @@ class PendadaranController extends Controller
             $filePendadaran->foto = $this->uploadFile($request, 'foto', 'pendadaran/foto', $nim);
             $filePendadaran->update(['foto' => $filePendadaran->foto]);
         }
-        $filePendadaran->status = 'pending';
-        $filePendadaran->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.';
+        // $filePendadaran->status = 'pending';
+        // $filePendadaran->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.';
         $filePendadaran->updated_at = date(now());
         $filePendadaran->save();
 
