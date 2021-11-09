@@ -76,28 +76,38 @@ class SeminarHasilController extends Controller
         $nim = $seminar->mahasiswa_nim;
         if ($request->hasFile('krs')) {
             File::delete('storage/' . $seminar->krs);
-            $seminar->krs = $this->uploadFile($request, 'krs', 'semhas/krs', $nim);
-            $seminar->update(['krs' => $seminar->krs]);
+            $file_request = $request->file('krs');
+            $extension = $file_request->extension();
+            $save_file = $file_request->storeAs('semhas/krs', $nim . '.' . $extension, 'public');
+            $seminar->update(['krs' => $save_file]);
         }
         if ($request->hasFile('transkip_nilai')) {
             File::delete('storage/' . $seminar->transkip_nilai);
-            $seminar->transkip_nilai = $this->uploadFile($request, 'transkip_nilai', 'semhas/transkip_nilai', $nim);
-            $seminar->update(['transkip_nilai' => $seminar->transkip_nilai]);
+            $file_request = $request->file('transkip_nilai');
+            $extension = $file_request->extension();
+            $save_file = $file_request->storeAs('semhas/transkip_nilai', $nim . '.' . $extension, 'public');
+            $seminar->update(['transkip_nilai' => $save_file]);
         }
         if ($request->hasFile('laporan_kp')) {
             File::delete('storage/' . $seminar->laporan_kp);
-            $seminar->laporan_kp = $this->uploadFile($request, 'laporan_kp', 'semhas/laporan_kp', $nim);
-            $seminar->update(['laporan_kp' => $seminar->laporan_kp]);
+            $file_request = $request->file('laporan_kp');
+            $extension = $file_request->extension();
+            $save_file = $file_request->storeAs('semhas/laporan_kp', $nim . '.' . $extension, 'public');
+            $seminar->update(['laporan_kp' => $save_file]);
         }
         if ($request->hasFile('keuangan')) {
             File::delete('storage/' . $seminar->keuangan);
-            $seminar->keuangan = $this->uploadFile($request, 'keuangan', 'semhas/keuangan', $nim);
-            $seminar->update(['keuangan' => $seminar->keuangan]);
+            $file_request = $request->file('keuangan');
+            $extension = $file_request->extension();
+            $save_file = $file_request->storeAs('semhas/keuangan', $nim . '.' . $extension, 'public');
+            $seminar->update(['keuangan' => $save_file]);
         }
         if ($request->hasFile('konsultasi')) {
             File::delete('storage/' . $seminar->konsultasi);
-            $seminar->konsultasi = $this->uploadFile($request, 'konsultasi', 'semhas/konsultasi', $nim);
-            $seminar->update(['konsultasi' => $seminar->konsultasi]);
+            $file_request = $request->file('konsultasi');
+            $extension = $file_request->extension();
+            $save_file = $file_request->storeAs('semhas/konsultasi', $nim . '.' . $extension, 'public');
+            $seminar->update(['konsultasi' => $save_file]);
         }
         $seminar->status = 'pending';
         $seminar->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.';
