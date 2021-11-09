@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified', 'role:admin|superadmin'])->group(function
     Route::get('datamahasiswa', DataMahasiswaController::class)->name('datamahasiswa');
     // Data Mahasiswa
     Route::get('data-mahasiswa', [BiodataController::class, 'index'])->name('data-mahasiswa.index');
+    Route::post('data-mahasiswa', [BiodataController::class, 'store'])->name('data-mahasiswa.store');
     Route::delete('data-mahasiswa/{id}', [BiodataController::class, 'destroy'])->name('data-mahasiswa.destroy');
     Route::get('getdata-mahasiswa', BiodataMahasiswaController::class)->name('getdata-mahasiswa');
     // Data Seminar Hasil
