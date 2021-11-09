@@ -1,0 +1,11 @@
+<script src="{{ asset('vendors/jquery/jquery-3.6.0.js') }}"></script>
+<script src="{{ asset('js/feather-icons/feather.min.js') }}"></script>
+<script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('js/responsive.bootstrap.min.js') }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('js/main.js') }}"></script>
