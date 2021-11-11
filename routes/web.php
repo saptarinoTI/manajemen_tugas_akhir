@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\Mahasiswa\ImportDataMahasiswaController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\Pendadaran\DataPendadaranController;
 use App\Http\Controllers\Admin\Pendadaran\GetDataPendadaranController;
+use App\Http\Controllers\Admin\Proposal\DataProposalController;
+use App\Http\Controllers\Admin\Proposal\ProposalController;
+use App\Http\Controllers\Admin\Role\RoleController;
 use App\Http\Controllers\Admin\Seminar\DataSeminarController;
 use App\Http\Controllers\Admin\Seminar\DataSeminarHasilController;
 use App\Http\Controllers\Admin\User\DataUserController;
@@ -45,6 +48,13 @@ Route::get('/rubah-password', [ResetPasswordController::class, 'index'])->name('
 Route::patch('/rubah-password', [ResetPasswordController::class, 'update'])->name('user-change-password.update');
 // Dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
+
+
+Route::middleware(['auth', 'role:admin|superadmin'])->group(function () {
+    Route::resource('role', RoleController::class);
+});
+
+
 Route::middleware(['auth', 'verified', 'role:admin|superadmin'])->group(function () {
     // Users
     Route::resource('users', UserController::class)->except('show', 'edit', 'update');
@@ -57,6 +67,9 @@ Route::middleware(['auth', 'verified', 'role:admin|superadmin'])->group(function
     Route::post('data-mahasiswa', [BiodataController::class, 'store'])->name('data-mahasiswa.store');
     Route::delete('data-mahasiswa/{id}', [BiodataController::class, 'destroy'])->name('data-mahasiswa.destroy');
     Route::get('getdata-mahasiswa', BiodataMahasiswaController::class)->name('getdata-mahasiswa');
+    // Data Proposal Tugas Akhir
+    Route::resource('data-proposal', ProposalController::class)->except('create', 'store', 'destroy');
+    Route::get('getdata-proposal', DataProposalController::class)->name('getdata-proposal');
     // Data Seminar Hasil
     Route::resource('data-seminar', DataSeminarController::class)->except('create', 'store', 'destroy');
     Route::get('data-seminarhasil', DataSeminarHasilController::class)->name('data-seminarhasil.index');
@@ -69,6 +82,7 @@ Route::middleware(['auth', 'verified', 'role:mahasiswa|superadmin'])->group(func
     // Data Diri
     Route::resource('data-diri', DataDiriController::class)->except('show', 'delete');
     Route::get('get-mahasiswa', DataController::class)->name('get-mahasiswa');
+    // Proposal Tugas Akhir
     // Seminar Hasil
     Route::resource('seminar-hasil', SeminarHasilController::class);
     // Pendadaran

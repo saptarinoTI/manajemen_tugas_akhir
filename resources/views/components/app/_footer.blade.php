@@ -8,4 +8,5 @@
 <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('js/responsive.bootstrap.min.js') }}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>
