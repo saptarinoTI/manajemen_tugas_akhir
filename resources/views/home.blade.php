@@ -147,7 +147,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h6 class="fw-bold">Seminar Hasil Sukses</h6>
+            <h6 class="fw-bold">Seminar Hasil Baru</h6>
             @if ($seminar != 0)
             <span style="color: #c2c2c2; font-size: 12px">Update : {{ date('d M Y', strtotime((string)$updateSmnr->updated_at)) }}</span>
             @else
@@ -163,7 +163,7 @@
       <div class="card">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <h6 class="fw-bold">Pendadaran Sukses</h6>
+            <h6 class="fw-bold">Pendadaran Baru</h6>
             @if ($pendadaran != 0)
             <span style="color: #c2c2c2; font-size: 12px">Update : {{ date('d M Y', strtotime((string)$updatePddrn->updated_at)) }}</span>
             @else
@@ -180,7 +180,7 @@
 
   <div class="row">
     <div class="ol">
-      <div class="card">
+      <div class="card py-3 px-5">
         <canvas id="canvas" height="280" width="700"></canvas>
       </div>
     </div>

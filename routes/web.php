@@ -43,6 +43,9 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
+// Daftar Judul Tugas Akhir
+Route::get('judul-ta', [JudulTugasAkhirController::class, 'index'])->name('judul-ta.index');
+
 // Add Email
 Route::get('/add-email', [AddEmailController::class, 'index'])->name('add-email');
 Route::post('/add-email', [AddEmailController::class, 'store'])->name('add-email.store');
@@ -53,9 +56,6 @@ Route::patch('/rubah-password', [ResetPasswordController::class, 'update'])->nam
 
 // Dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware(['auth', 'verified']);
-
-// Daftar Judul Tugas Akhir
-Route::get('judul-ta', [JudulTugasAkhirController::class, 'index'])->name('judul-ta.index');
 
 Route::middleware(['auth', 'role:superadmin'])->group(function () {
     Route::resource('role', RoleController::class)->except('show', 'edit', 'update');
