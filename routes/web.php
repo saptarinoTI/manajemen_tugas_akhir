@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\Dosen\DosenController;
+use App\Http\Controllers\Admin\GetDataLulusController;
+use App\Http\Controllers\Admin\LulusController;
 use App\Http\Controllers\Admin\Mahasiswa\BiodataController;
 use App\Http\Controllers\Admin\Mahasiswa\BiodataMahasiswaController;
 use App\Http\Controllers\Admin\Mahasiswa\DataMahasiswaController;
@@ -93,6 +95,8 @@ Route::middleware(['auth', 'verified', 'role:admin|prodi|staff|superadmin'])->gr
     // Data Pendadaran
     Route::resource('data-pendadaran', DataPendadaranController::class)->except('create', 'store', 'destroy');
     Route::get('getdata-pendadaran', GetDataPendadaranController::class)->name('getdata-pendadaran');
+    // Data Pendadaran
+    Route::resource('data-lulus', LulusController::class)->except('create', 'store', 'destroy');
 });
 
 Route::middleware(['auth', 'verified', 'role:mahasiswa|superadmin'])->group(function () {

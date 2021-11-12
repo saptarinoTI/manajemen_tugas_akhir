@@ -69,6 +69,12 @@
             <span>Pendadaran</span>
           </a>
         </li>
+        <li class="sidebar-item{{ (request()->is('data-lulus*')) ?  ' active' : '' }}">
+          <a href="{{ route('data-lulus.index') }}" class='sidebar-link'>
+            <i data-feather="file-text" width="20"></i>
+            <span>Mhs. Lulus</span>
+          </a>
+        </li>
         @endrole
 
         @role('mahasiswa')

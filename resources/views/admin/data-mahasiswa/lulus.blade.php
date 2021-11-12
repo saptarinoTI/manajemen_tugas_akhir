@@ -1,14 +1,8 @@
 <x-app-layout>
-  <x-slot name="name">Data Diri Mahasiswa</x-slot>
+  <x-slot name="name">Data Mahasiswa Lulus</x-slot>
 
   {{-- Table Data Mahasiswa --}}
   <div class="card">
-    <div class="card-header d-flex justify-content-end">
-      <form action="{{ route('data-mahasiswa.store') }}" method="POST">
-        @csrf
-        <x-form.button type="submit">Update Data</x-form.button>
-      </form>
-    </div>
     <div class="card-body">
       <div class="table-responsive">
         <table id="table_data_mahasiswa" class="table table-striped nowrap" style="width:100%">
