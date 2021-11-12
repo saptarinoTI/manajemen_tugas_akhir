@@ -16,9 +16,9 @@
             <tr>
               <th>NIM</th>
               <th>Nama</th>
-              <th>No HP</th>
+              {{-- <th>No HP</th> --}}
               <th>Tempat & Tanggal Lahir</th>
-              <th>Alamat</th>
+              {{-- <th>Alamat</th> --}}
               <th>Tgl. Submit</th>
               <th>Tgl. Update</th>
               <th>Aksi</th>
@@ -82,18 +82,18 @@
             data: 'nama'
             , name: 'nama'
           }
-          , {
-            data: 'no_hp'
-            , name: 'no_hp'
-          }
+        //   , {
+        //     data: 'no_hp'
+        //     , name: 'no_hp'
+        //   }
           , {
             data: 'ttl'
             , name: 'ttl'
           }
-          , {
-            data: 'alamat'
-            , name: 'alamat'
-          }
+        //   , {
+        //     data: 'alamat'
+        //     , name: 'alamat'
+        //   }
           , {
             data: 'tgl_add'
             , name: 'tgl_add'
