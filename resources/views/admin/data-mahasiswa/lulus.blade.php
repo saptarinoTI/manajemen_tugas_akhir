@@ -15,7 +15,7 @@
               {{-- <th>Alamat</th> --}}
               <th>Tgl. Submit</th>
               <th>Tgl. Update</th>
-              <th>Aksi</th>
+              {{-- <th>Aksi</th> --}}
             </tr>
           </thead>
           <tbody>
@@ -96,10 +96,10 @@
             data: 'tgl_update'
             , name: 'tgl_update'
           }
-          , {
-            data: 'btn'
-            , name: 'btn'
-          }
+          //   , {
+          //     data: 'btn'
+          //     , name: 'btn'
+          //   }
         , ]
       });
     });
