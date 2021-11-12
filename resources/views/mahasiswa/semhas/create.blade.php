@@ -31,15 +31,17 @@
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Utama') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->pem_utama) }}" required readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->proposal->dosen1->nama) }}" required readonly disabled />
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Pendamping') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->pem_pendamping) }}" required readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->proposal->dosen2->nama) }}" required readonly disabled />
+
           </div>
           <div class="col-sm-12 my-1">
             <x-form.label value="{{ __('Judul Tugas Akhir') }}" />
-            <textarea class="form-control fw-bold text-light" rows="2" required readonly disabled>{{ ucwords($mahasiswa->judul_ta) }}</textarea>
+            <textarea class="form-control fw-bold text-light" rows="2" required readonly disabled>{{ ucwords($mahasiswa->proposal->judul_ta) }}</textarea>
+
           </div>
         </div>
 
@@ -78,7 +80,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('laporan_kp') is-invalid @enderror" name="laporan_kp" value="{{ old('laporan_kp') }}" required />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="laporan_kp" />
               </div>
               {{-- End Kerja Praktek --}}
@@ -88,7 +90,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('keuangan') is-invalid @enderror" name="keuangan" value="{{ old('keuangan') }}" required />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="keuangan" />
               </div>
               {{-- End Kartu Kuning / BAUK --}}
@@ -98,7 +100,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('konsultasi') is-invalid @enderror" name="konsultasi" value="{{ old('konsultasi') }}" required />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="konsultasi" />
               </div>
               {{-- End Aktivitas Tugas Akhir / Lembar Konsultasi --}}

@@ -21,19 +21,19 @@
     <tr>
       <th class="col-4">Pembimbing Utama</th>
       <th>:</th>
-      <td>{{ ucwords($mahasiswa->pem_utama) }}</td>
+      <td>{{ ucwords($mahasiswa->proposal->dosen1->nama) }}</td>
     </tr>
 
     <tr>
       <th class="col-4">Pembimbing Pendamping</th>
       <th>:</th>
-      <td>{{ ucwords($mahasiswa->pem_pendamping) }}</td>
+      <td>{{ ucwords($mahasiswa->proposal->dosen2->nama) }}</td>
     </tr>
 
     <tr>
       <th class="col-4">Judul Tugas Akhir</th>
       <th>:</th>
-      <td>{{ ucwords($mahasiswa->judul_ta) }}</td>
+      <td>{{ ucwords($mahasiswa->proposal->judul_ta) }}</td>
     </tr>
 
     <tr>
@@ -78,14 +78,15 @@
       <th class="col-4">Status</th>
       <th>:</th>
       <td>
-        @if ($mahasiswa->seminar->status == 'terima')
+        {{-- @if ($mahasiswa->seminar->status == 'terima')
         <span class="badge bg-success">Diterima
           @elseif ($mahasiswa->seminar->status == 'tolak')
           <span class="badge bg-danger">Ditolak
             @else
             <span class="badge bg-info">Validasi
               @endif
-            </span>
+            </span> --}}
+        {{ ucwords($mahasiswa->seminar->status) }}
       </td>
     </tr>
 

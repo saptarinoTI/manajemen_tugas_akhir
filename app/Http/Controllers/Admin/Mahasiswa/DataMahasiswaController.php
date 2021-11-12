@@ -19,8 +19,9 @@ class DataMahasiswaController extends Controller
     public function __invoke(Request $request)
     {
         try {
-            $response = Http::get('http://localhost:9000/mahasiswa/');
+            $response = Http::get('http://api.siakad.stitek.ac.id/siakadzone/mahasiswa');
             $data = $response->json();
+            $data = $data['data'];
             return DataTables::of($data)->make(true);
         } catch (ConnectionException $e) {
         }

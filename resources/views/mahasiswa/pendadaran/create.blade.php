@@ -31,15 +31,15 @@
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Utama') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->pem_utama) }}" required readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->proposal->dosen1->nama) }}" required readonly disabled />
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Pendamping') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->pem_pendamping) }}" required readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($mahasiswa->proposal->dosen2->nama) }}" required readonly disabled />
           </div>
           <div class="col-sm-12 my-1">
             <x-form.label value="{{ __('Judul Tugas Akhir') }}" />
-            <textarea class="form-control fw-bold text-light" rows="2" required readonly disabled>{{ ucwords($mahasiswa->judul_ta) }}</textarea>
+            <textarea class="form-control fw-bold text-light" rows="2" required readonly disabled>{{ ucwords($mahasiswa->proposal->judul_ta) }}</textarea>
           </div>
         </div>
 
@@ -78,7 +78,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('konsultasi') is-invalid @enderror" name="konsultasi" value="{{ old('konsultasi') }}" />
-                <div class="form-text">* Upload file Gambar maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="konsultasi" />
               </div>
               {{-- End Lembar Aktifitas Tugas Akhir --}}
@@ -158,7 +158,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('ijazah') is-invalid @enderror" name="ijazah" value="{{ old('ijazah') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="ijazah" />
               </div>
               {{-- End Fotocopy ijazah terakhir --}}
@@ -168,7 +168,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('ktp') is-invalid @enderror" name="ktp" value="{{ old('ktp') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="ktp" />
               </div>
               {{-- End Fotocopy KTP --}}
@@ -178,7 +178,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('akte') is-invalid @enderror" name="akte" value="{{ old('akte') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="akte" />
               </div>
               {{-- End Fotocopy Akte Kelahiran --}}
@@ -188,7 +188,7 @@
               </div>
               <div class="col-md-7 form-group">
                 <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" value="{{ old('foto') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file FOTO / GAMBAR maksimal 1MB.</div>
                 <x-form.validation-message name="foto" />
               </div>
               {{-- End Foto 3 x 4 berwarna (cetak dan softcopy), latar belakang merah, pakaian kemeja putih dan jas berwarna hitam (pria memakai dasi) --}}

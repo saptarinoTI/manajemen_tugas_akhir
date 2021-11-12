@@ -29,15 +29,6 @@ class BiodataMahasiswaController extends Controller
             ->addColumn('alamat', function ($row) {
                 return ucwords($row->alamat);
             })
-            ->addColumn('pem_utama', function ($row) {
-                return ucwords($row->pem_utama);
-            })
-            ->addColumn('pem_pendamping', function ($row) {
-                return ucwords($row->pem_pendamping);
-            })
-            ->addColumn('judul_ta', function ($row) {
-                return ucwords($row->judul_ta);
-            })
             ->addColumn('tgl_add', function ($row) {
                 return date('d F Y', strtotime($row->created_at));
             })

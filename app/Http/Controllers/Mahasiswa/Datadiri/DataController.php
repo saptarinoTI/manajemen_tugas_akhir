@@ -37,10 +37,10 @@ class DataController extends Controller
                 return ucwords($row->alamat);
             })
             ->addColumn('pem_utama', function ($row) {
-                return ucwords($row->pem_utama);
+                return ucwords($row->pembimbing->dosen);
             })
             ->addColumn('pem_pendamping', function ($row) {
-                return ucwords($row->pem_pendamping);
+                return ucwords($row->judul_ta);
             })
             ->addColumn('judul_ta', function ($row) {
                 return ucwords($row->judul_ta);

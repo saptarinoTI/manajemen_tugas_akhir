@@ -27,9 +27,9 @@ class SemhasRequest extends FormRequest
             'mahasiswa_nim' => 'required',
             'krs' => 'required|file|max:1024|mimetypes:application/pdf',
             'transkip_nilai' => 'required|file|max:1024|mimetypes:application/pdf',
-            'laporan_kp' => 'required|max:1024|image|mimes:jpeg,png,jpg',
-            'keuangan' => 'required|max:1024|image|mimes:jpeg,png,jpg',
-            'konsultasi' => 'required|max:1024|image|mimes:jpeg,png,jpg',
+            'laporan_kp' => 'required|file|max:1024|mimetypes:application/pdf',
+            'keuangan' => 'required|file|max:1024|mimetypes:application/pdf',
+            'konsultasi' => 'required|file|max:1024|mimetypes:application/pdf',
         ];
     }
 
@@ -38,8 +38,7 @@ class SemhasRequest extends FormRequest
         return [
             'max' => 'File :attribute maksimal 1MB.',
             'mimetypes' => 'File :attribute harus berupa pdf.',
-            'mimes' => 'File :attribute harus berupa jpeg, jpg dan png.',
-            'image' => 'File :attribute harus berupa gambar.',
+            'required' => 'Form tidak boleh kosong',
         ];
     }
 }

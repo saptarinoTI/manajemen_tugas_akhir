@@ -48,9 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getDataMahasiswa($nim, $values)
     {
         try {
-            $response = Http::get('http://localhost:9000/mahasiswa/' . $nim);
+            $response = Http::get('http://api.siakad.stitek.ac.id/siakadzone/mahasiswa?mhs_no=' . $nim);
             $data = $response->json();
-            return $data[0][$values];
+            if (!$data) {
+                return $data["data"][0][$values];
+            }
         } catch (ConnectionException $e) {
             //throw $th;
         }

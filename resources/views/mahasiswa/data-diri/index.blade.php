@@ -20,15 +20,26 @@
               <th>No HP</th>
               <th>Tempat, Tanggal Lahir</th>
               <th>Alamat</th>
-              <th>Pem Utama</th>
-              <th>Pen Pendamping</th>
-              <th>Tugas Akhir</th>
-              <th>Tgl. Submit</th>
-              <th>Tgl. Update</th>
-              <th>@role('mahasiswa') Aksi @endrole</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
+            @if($mahasiswa)
+            <tr>
+              <td>{{ $mahasiswa->nim }}</td>
+              <td>{{ ucwords($mahasiswa->nama) }}</td>
+              <td>{{ $mahasiswa->no_hp }}</td>
+              <td>{{ ucwords($mahasiswa->tmpt_lahir).', '.date('d M Y', strtotime($mahasiswa->tgl_lahir)) }}</td>
+              <td>{{ ucwords($mahasiswa->alamat) }}</td>
+              <td>
+                <a href="{{ route('data-diri.edit', $mahasiswa->nim) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+              </td>
+            </tr>
+            @else
+            <tr>
+              <td colspan="6" class="text-center" style="font-weight: 500">Data tidak tersedia</td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>
@@ -39,63 +50,63 @@
   @push('script')
   <script>
     // Script of DataTables
-    $(function() {
-      var table = $('#table_data_mahasiswa').DataTable({
-        processing: true
-        , serverSide: true
-        , responsive: true
-          // , searching: false
-        , lengthChange: false
-          // , paging: false
-        , info: false
-        , ajax: "{{ route('get-mahasiswa') }}"
-        , columns: [{
-            data: 'nim'
-            , name: 'nim'
-          }
-          , {
-            data: 'nama'
-            , name: 'nama'
-          }
-          , {
-            data: 'no_hp'
-            , name: 'no_hp'
-          }
-          , {
-            data: 'ttl'
-            , name: 'ttl'
-          }
-          , {
-            data: 'alamat'
-            , name: 'alamat'
-          }
-          , {
-            data: 'pem_utama'
-            , name: 'pem_utama'
-          }
-          , {
-            data: 'pem_pendamping'
-            , name: 'pem_pendamping'
-          }
-          , {
-            data: 'judul_ta'
-            , name: 'judul_ta'
-          }
-          , {
-            data: 'tgl_add'
-            , name: 'tgl_add'
-          }
-          , {
-            data: 'tgl_update'
-            , name: 'tgl_update'
-          }
-          , {
-            data: 'btn'
-            , name: 'btn'
-          }
-        , ]
-      });
-    });
+    // $(function() {
+    //   var table = $('#table_data_mahasiswa').DataTable({
+    //     processing: true
+    //     , serverSide: true
+    //     , responsive: true
+    //       // , searching: false
+    //     , lengthChange: false
+    //       // , paging: false
+    //     , info: false
+    //     , ajax: "{{ route('data-diri.index') }}"
+    //     , columns: [{
+    //         data: 'nim'
+    //         , name: 'nim'
+    //       }
+    //       , {
+    //         data: 'nama'
+    //         , name: 'nama'
+    //       }
+    //       , {
+    //         data: 'no_hp'
+    //         , name: 'no_hp'
+    //       }
+    //       , {
+    //         data: 'ttl'
+    //         , name: 'ttl'
+    //       }
+    //       , {
+    //         data: 'alamat'
+    //         , name: 'alamat'
+    //       }
+    //       , {
+    //         data: 'pem_utama'
+    //         , name: 'pem_utama'
+    //       }
+    //       , {
+    //         data: 'pem_pendamping'
+    //         , name: 'pem_pendamping'
+    //       }
+    //       , {
+    //         data: 'judul_ta'
+    //         , name: 'judul_ta'
+    //       }
+    //       , {
+    //         data: 'tgl_add'
+    //         , name: 'tgl_add'
+    //       }
+    //       , {
+    //         data: 'tgl_update'
+    //         , name: 'tgl_update'
+    //       }
+    //       , {
+    //         data: 'btn'
+    //         , name: 'btn'
+    //       }
+    //     , ]
+    //   });
+    // });
 
   </script>
   @endpush

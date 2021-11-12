@@ -1,6 +1,6 @@
 <x-app-layout>
   {{-- <x-app.title name="Seminar Hasil" /> --}}
-  <x-slot name="name">Seminar Hasil</x-slot>
+  <x-slot name="name">Data Pendadaran</x-slot>
 
   {{-- Table Data Mahasiswa --}}
   <div class="card">

@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
     public function store()
     {
         // 1. Ambil data API rubah menjadi json
-        $response = Http::get('http://localhost:9000/mahasiswa/');
+        $response = Http::get('http://api.siakad.stitek.ac.id/siakadzone/mahasiswa');
         $responseData = $response->json();
 
         // 2. Perulangan untuk menyinpan api ke table user

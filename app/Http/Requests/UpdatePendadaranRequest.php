@@ -26,7 +26,7 @@ class UpdatePendadaranRequest extends FormRequest
         return [
             'krs' => 'file|max:1024|mimetypes:application/pdf',
             'transkip_nilai' => 'file|max:1024|mimetypes:application/pdf',
-            'konsultasi' => 'max:1024|image|mimes:jpeg,png,jpg',
+            'konsultasi' => 'file|max:1024|mimetypes:application/pdf',
             'perkuliahan' => 'file|max:1024|mimetypes:application/pdf',
             'keuangan' => 'file|max:1024|mimetypes:application/pdf',
             'perpustakaan' => 'file|max:1024|mimetypes:application/pdf',
@@ -34,9 +34,9 @@ class UpdatePendadaranRequest extends FormRequest
             'action' => 'file|max:1024|mimetypes:application/pdf',
             'kompetensi' => 'file|max:1024|mimetypes:application/pdf',
             'toefl' => 'file|max:1024|mimetypes:application/pdf',
-            'ijazah' => 'max:1024|image|mimes:jpeg,png,jpg',
-            'ktp' => 'max:1024|image|mimes:jpeg,png,jpg',
-            'akte' => 'max:1024|image|mimes:jpeg,png,jpg',
+            'ijazah' => 'file|max:1024|mimetypes:application/pdf',
+            'ktp' => 'file|max:1024|mimetypes:application/pdf',
+            'akte' => 'file|max:1024|mimetypes:application/pdf',
             'foto' => 'max:1024|image|mimes:jpeg,png,jpg',
         ];
     }

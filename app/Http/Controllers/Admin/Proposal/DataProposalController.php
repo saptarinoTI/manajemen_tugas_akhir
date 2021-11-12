@@ -21,13 +21,14 @@ class DataProposalController extends Controller
                 return ucwords($row->mahasiswa->nama);
             })
             ->addColumn('status', function ($row) {
-                if ($row->status == 'terima') {
-                    return '<span class="badge bg-success">Diterima</span>';
-                } elseif ($row->status == 'tolak') {
-                    return '<span class="badge bg-danger">Ditolak</span>';
-                } else {
-                    return '<span class="badge bg-info">Validasi</span>';
-                }
+                // if ($row->status == 'terima') {
+                //     return '<span class="badge bg-success">Diterima</span>';
+                // } elseif ($row->status == 'tolak') {
+                //     return '<span class="badge bg-danger">Ditolak</span>';
+                // } else {
+                //     return '<span class="badge bg-info">Validasi</span>';
+                // }
+                return ucwords($row->status);
             })
             ->addColumn('tgl_terima', function ($row) {
                 if ($row->tgl_terima == null) {

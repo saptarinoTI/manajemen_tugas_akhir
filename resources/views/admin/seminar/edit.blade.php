@@ -16,8 +16,8 @@
                 <fieldset class="form-group">
                   <select class="form-select @error('status') is-invalid @enderror" name="status">
                     <option>Pilih Status ...</option>
-                    <option value="terima">Diterima</option>
-                    <option value="tolak">Ditolak</option>
+                    <option value="diterima">Diterima</option>
+                    <option value="ditolak">Ditolak</option>
                   </select>
                 </fieldset>
                 <x-form.validation-message name="status" />

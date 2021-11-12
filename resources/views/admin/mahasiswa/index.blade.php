@@ -34,16 +34,16 @@
         , serverSide: true
         , ajax: "{{ route('datamahasiswa') }}"
         , columns: [{
-            data: 'nim'
-            , name: 'nim'
+            data: 'mhs_no'
+            , name: 'mhs_no'
           }
           , {
-            data: 'nama'
-            , name: 'nama'
+            data: 'mhs_nama'
+            , name: 'mhs_nama'
           }
           , {
-            data: 'tahun_ajaran'
-            , name: 'tahun_ajaran'
+            data: 'ta_id'
+            , name: 'ta_id'
           }
         , ]
       });

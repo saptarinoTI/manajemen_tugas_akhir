@@ -30,9 +30,6 @@ class MahasiswaRequest extends FormRequest
             'tgl_lahir' => 'required|date',
             'no_hp' => 'required|numeric',
             'alamat' => 'required',
-            'pem_utama' => 'required',
-            'pem_pendamping' => 'required',
-            'judul_ta' => 'required',
         ];
     }
 

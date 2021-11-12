@@ -68,7 +68,8 @@
                 <x-form.label value="{{ __('Nama Pembimbing Utama') }}" />
               </div>
               <div class="col-md-7 form-group">
-                <input type="text" class="form-control @error('pem_utama') is-invalid @enderror" name="pem_utama" value="{{ old('pem_utama', ucwords($pendadaran->mahasiswa->pem_utama)) }}" readonly />
+                <input type="text" class="form-control @error('pem_utama') is-invalid @enderror" name="pem_utama" value="{{ old('pem_utama', ucwords($pendadaran->mahasiswa->proposal->dosen1->nama)) }}" readonly />
+
                 <x-form.validation-message name="pem_utama" />
               </div>
               {{-- End Pembimbing Utama --}}
@@ -77,7 +78,7 @@
                 <x-form.label value="{{ __('Nama Pembimbing Pendamping') }}" />
               </div>
               <div class="col-md-7 form-group">
-                <input type="text" class="form-control @error('pem_pendamping') is-invalid @enderror" name="pem_pendamping" value="{{ old('pem_pendamping', ucwords($pendadaran->mahasiswa->pem_pendamping)) }}" readonly />
+                <input type="text" class="form-control @error('pem_pendamping') is-invalid @enderror" name="pem_pendamping" value="{{ old('pem_pendamping', ucwords($pendadaran->mahasiswa->proposal->dosen2->nama)) }}" readonly />
                 <x-form.validation-message name="pem_pendamping" />
               </div>
               {{-- End Pembimbing Pendamping --}}
@@ -113,10 +114,10 @@
               </div>
               <div class="col-md-7 form-group">
                 <a href="{{ Storage::url($pendadaran->konsultasi) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('konsultasi') is-invalid @enderror" name="konsultasi" value="{{ old('konsultasi') }}" />
-                <div class="form-text">* Upload file Gambar maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="konsultasi" />
               </div>
               {{-- End Lembar Aktifitas Tugas Akhir --}}
@@ -217,10 +218,10 @@
               </div>
               <div class="col-md-7 form-group">
                 <a href="{{ Storage::url($pendadaran->ijazah) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('ijazah') is-invalid @enderror" name="ijazah" value="{{ old('ijazah') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="ijazah" />
               </div>
               {{-- End Fotocopy ijazah terakhir --}}
@@ -230,10 +231,10 @@
               </div>
               <div class="col-md-7 form-group">
                 <a href="{{ Storage::url($pendadaran->ktp) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('ktp') is-invalid @enderror" name="ktp" value="{{ old('ktp') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="ktp" />
               </div>
               {{-- End Fotocopy KTP --}}
@@ -243,10 +244,10 @@
               </div>
               <div class="col-md-7 form-group">
                 <a href="{{ Storage::url($pendadaran->akte) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('akte') is-invalid @enderror" name="akte" value="{{ old('akte') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file PDF maksimal 1MB.</div>
                 <x-form.validation-message name="akte" />
               </div>
               {{-- End Fotocopy Akte Kelahiran --}}
@@ -256,10 +257,10 @@
               </div>
               <div class="col-md-7 form-group">
                 <a href="{{ Storage::url($pendadaran->foto) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" value="{{ old('foto') }}" />
-                <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
+                <div class="form-text">* Upload file FOTO / GAMBAR maksimal 1MB.</div>
                 <x-form.validation-message name="foto" />
               </div>
               {{-- End Foto 3 x 4 berwarna (cetak dan softcopy), latar belakang merah, pakaian kemeja putih dan jas berwarna hitam (pria memakai dasi) --}}
@@ -267,7 +268,8 @@
               <div class="col-12">
                 <div class="form-group">
                   <x-form.label value="{{ __('Judul Tas Akhir') }}" />
-                  <textarea class="form-control @error('judul_ta') is-invalid @enderror" rows="3" name="judul_ta" readonly>{{ old('judul_ta', ucwords($pendadaran->mahasiswa->judul_ta)) }}</textarea>
+                  <textarea class="form-control @error('judul_ta') is-invalid @enderror" rows="3" name="judul_ta" readonly>{{ old('judul_ta', ucwords($pendadaran->mahasiswa->proposal->judul_ta)) }}</textarea>
+
                   <x-form.validation-message name="judul_ta" />
                 </div>
               </div>

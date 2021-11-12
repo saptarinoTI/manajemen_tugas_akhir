@@ -23,16 +23,14 @@ class AdminSeeder extends Seeder
         $user->email_verified_at = Carbon::now();
         $user->password = Hash::make('superadmin');
         $user->save();
-
         $user->assignRole(['superadmin']);
-        $user->givePermissionTo(['create', 'read', 'update', 'delete']);
 
-        $user->username = '201712036';
-        $user->email = 'bulbil1604@gmail.com';
-        $user->email_verified_at = Carbon::now();
-        $user->password = Hash::make('281099');
-        $user->save();
-
-        $user->assignRole(['mahasiswa']);
+        $mhs = new User();
+        $mhs->username = '201712036';
+        $mhs->email = 'bulbil1604@gmail.com';
+        $mhs->email_verified_at = Carbon::now();
+        $mhs->password = Hash::make('281099');
+        $mhs->save();
+        $mhs->assignRole(['mahasiswa']);
     }
 }

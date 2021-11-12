@@ -64,33 +64,6 @@
               </div>
               {{-- End Alamat Lengkap --}}
 
-              <div class="col-md-4">
-                <x-form.label value="{{ __('Pembimbing Utama') }}" />
-              </div>
-              <div class="col-md-8 form-group">
-                <input type="text" class="form-control @error('pem_utama') is-invalid @enderror" value="{{ old('pem_utama') }}" name="pem_utama" autocomplete="off" />
-                <x-form.validation-message name="pem_utama" />
-              </div>
-              {{-- End Pembimbing Utama --}}
-
-              <div class="col-md-4">
-                <x-form.label value="{{ __('Pembimbing Pendamping') }}" />
-              </div>
-              <div class="col-md-8 form-group">
-                <input type="text" class="form-control @error('pem_pendamping') is-invalid @enderror" value="{{ old('pem_pendamping') }}" name="pem_pendamping" autocomplete="off" />
-                <x-form.validation-message name="pem_pendamping" />
-              </div>
-              {{-- End Pembimbing Pendamping --}}
-
-              <div class="col-md-4">
-                <x-form.label value="{{ __('Judul Tugas Akhir') }}" />
-              </div>
-              <div class="col-md-8 form-group">
-                <textarea class="form-control @error('judul_ta') is-invalid @enderror" rows="3" name="judul_ta">{{ old('judul_ta') }}</textarea>
-                <x-form.validation-message name="judul_ta" />
-              </div>
-              {{-- End Judul Tugas Akhir --}}
-
               <div class="col-sm-12 mt-2 d-flex justify-content-end">
                 <x-form.button type="submit">Submit Data</x-form.button>
               </div>

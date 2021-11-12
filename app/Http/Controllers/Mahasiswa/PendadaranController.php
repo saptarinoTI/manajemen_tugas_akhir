@@ -20,7 +20,6 @@ class PendadaranController extends Controller
     {
         $nim = Auth::user()->username;
         $mahasiswa = Mahasiswa::where('nim', '=', $nim)->with('seminar')->first();
-        // $seminar = Seminar::where('status', '=', 'terima')->first();
         $seminar = Mahasiswa::where('nim', '=', $nim)->whereHas('seminar', function ($query) {
             $query->select('status');
         })->first();
@@ -31,7 +30,7 @@ class PendadaranController extends Controller
         }
 
         if ($mahasiswa->seminar) {
-            if ($mahasiswa->seminar->status === "terima") {
+            if ($mahasiswa->seminar->status === "diterima") {
                 $pendadaran = Pendadaran::select('id', 'mahasiswa_nim', 'status', 'keterangan', 'created_at', 'updated_at')->where('mahasiswa_nim', '=', $mahasiswa->nim)->first();
             } else {
                 Alert::toast('Status seminar hasil belum diterima, silahkan selesaikan terlebih dahulu.', 'warning');
@@ -71,8 +70,8 @@ class PendadaranController extends Controller
         $file->ktp = $this->uploadFile($request, 'ktp', 'pendadaran/ktp', $nim);
         $file->akte = $this->uploadFile($request, 'akte', 'pendadaran/akte', $nim);
         $file->foto = $this->uploadFile($request, 'foto', 'pendadaran/foto', $nim);
-        // $file->status = 'pending';
-        // $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
+        $file->status = 'dikirim';
+        $file->keterangan = 'silahkan bertemu bagian prodi teknik informatika untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 4 rangkap (1 rangkap asli).';
         $file->save();
 
         Alert::success('Berhasil', 'Data pendaftaran pendadaran berhasil ditambahkan!');

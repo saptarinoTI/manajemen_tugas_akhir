@@ -23,21 +23,22 @@
             <p class="fw-bold text-xs d-flex justify-content-end" style="letter-spacing: 1px">Submit : {{ date('d F Y', strtotime($seminar->created_at )) }}</p>
             <tr>
               <td>
-                @if ($seminar->status == "terima")
+                {{-- @if ($seminar->status == "terima")
                 <span class="badge bg-success">Diterima
                   @elseif ($seminar->status == "tolak")
                   <span class="badge bg-danger">Ditolak
                     @else
                     <span class="badge bg-info">Validasi
                       @endif
-                    </span>
+                    </span> --}}
+                {{ ucwords($seminar->status) }}
               </td>
               <td>{{ ucwords($seminar->keterangan) }}</td>
               <td class="text-center">
                 <a href="#semhasDetail" data-remote="{{ route('seminar-hasil.show', $seminar->mahasiswa->nim) }}" data-bs-toggle="modal" data-bs-target="#semhasDetail" data-title="{{ $seminar->mahasiswa->nim }} - {{ strtoupper($seminar->mahasiswa->nama) }}" class="my-1 btn btn-sm btn-info">
                   <i class="bi bi-eye-fill"></i>
                 </a>
-                @if ($seminar->status != 'terima')
+                @if ($seminar->status != 'diterima')
                 <a href="{{ route('seminar-hasil.edit', $seminar->id) }}" class="btn btn-sm btn-primary">
                   <i class="bi bi-pencil-fill"></i>
                 </a>

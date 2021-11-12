@@ -23,21 +23,22 @@
             <p class="fw-bold text-xs d-flex justify-content-end" style="letter-spacing: 1px">Submit : {{ date('d F Y', strtotime($pendadaran->created_at )) }}</p>
             <tr>
               <td>
-                @if ($pendadaran->status == "terima")
+                {{-- @if ($pendadaran->status == "terima")
                 <span class="badge bg-success">Diterima
                   @elseif ($pendadaran->status == "tolak")
                   <span class="badge bg-danger">Ditolak
                     @else
                     <span class="badge bg-info">Validasi
                       @endif
-                    </span>
+                    </span> --}}
+                {{ ucwords($pendadaran->status) }}
               </td>
               <td>{{ ucwords($pendadaran->keterangan) }}</td>
               <td class="text-center">
                 <a href="#pendadaranDetail" data-remote="{{ route('pendadaran.show', $pendadaran->id) }}" data-bs-toggle="modal" data-bs-target="#pendadaranDetail" data-title="{{ $pendadaran->mahasiswa->nim }} - {{ strtoupper($pendadaran->mahasiswa->nama) }}" class="btn btn-sm btn-info my-1">
                   <i class="bi bi-eye-fill"></i>
                 </a>
-                @if ($pendadaran->status != 'terima')
+                @if ($pendadaran->status != 'diterima')
                 <a href="{{ route('pendadaran.edit', $pendadaran->id) }}" class="btn btn-sm btn-primary">
                   <i class="bi bi-pencil-fill"></i>
                 </a>

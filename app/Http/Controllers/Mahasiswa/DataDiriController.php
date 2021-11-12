@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Mahasiswa;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MahasiswaRequest;
 use App\Http\Requests\UpdateMahasiswaRequest;
+use App\Models\Dosen\Dosen;
 use App\Models\Mahasiswa;
+use App\Models\Pembimbing\Pembimbing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use Yajra\DataTables\Facades\DataTables;
 
 class DataDiriController extends Controller
 {
@@ -22,12 +25,13 @@ class DataDiriController extends Controller
     public function create()
     {
         $nim = Auth::user()->username;
+        $dosen = Dosen::all();
         if (auth()->user()->hasRole('superadmin')) {
             $nama = 'superadmin';
         } else {
-            $nama = Auth::user()->getDataMahasiswa($nim, 'nama');
+            $nama = Auth::user()->getDataMahasiswa($nim, 'mhs_nama');
         }
-        return view('mahasiswa.data-diri.create', compact('nim', 'nama'));
+        return view('mahasiswa.data-diri.create', compact('nim', 'nama', 'dosen'));
     }
 
     public function store(MahasiswaRequest $request)
@@ -39,9 +43,6 @@ class DataDiriController extends Controller
         $mahasiswa->tmpt_lahir = strtolower(htmlspecialchars($request->tmpt_lahir));
         $mahasiswa->tgl_lahir = strtolower(htmlspecialchars($request->tgl_lahir));
         $mahasiswa->alamat = strtolower(htmlspecialchars($request->alamat));
-        $mahasiswa->pem_utama = strtolower(htmlspecialchars($request->pem_utama));
-        $mahasiswa->pem_pendamping = strtolower(htmlspecialchars($request->pem_pendamping));
-        $mahasiswa->judul_ta = strtolower(htmlspecialchars($request->judul_ta));
         $mahasiswa->save();
 
         Alert::success('Berhasil', 'Data diri berhasil ditambahkan!');
@@ -63,9 +64,6 @@ class DataDiriController extends Controller
         $mahasiswa->tmpt_lahir = strtolower(htmlspecialchars($request->tmpt_lahir));
         $mahasiswa->tgl_lahir = strtolower(htmlspecialchars($request->tgl_lahir));
         $mahasiswa->alamat = strtolower(htmlspecialchars($request->alamat));
-        $mahasiswa->pem_utama = strtolower(htmlspecialchars($request->pem_utama));
-        $mahasiswa->pem_pendamping = strtolower(htmlspecialchars($request->pem_pendamping));
-        $mahasiswa->judul_ta = strtolower(htmlspecialchars($request->judul_ta));
         $mahasiswa->updated_at = date(now());
         $mahasiswa->save();
 

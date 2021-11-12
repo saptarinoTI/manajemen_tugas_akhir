@@ -1,5 +1,5 @@
 <x-app-layout>
-  <x-slot name="name">Users</x-slot>
+  <x-slot name="name">Data Diri Mahasiswa</x-slot>
 
   {{-- Table Data Mahasiswa --}}
   <div class="card">
@@ -19,9 +19,6 @@
               <th>No HP</th>
               <th>Tempat & Tanggal Lahir</th>
               <th>Alamat</th>
-              <th>Pem Utama</th>
-              <th>Pen Pendamping</th>
-              <th>Tugas Akhir</th>
               <th>Tgl. Submit</th>
               <th>Tgl. Update</th>
               <th>Aksi</th>
@@ -96,18 +93,6 @@
           , {
             data: 'alamat'
             , name: 'alamat'
-          }
-          , {
-            data: 'pem_utama'
-            , name: 'pem_utama'
-          }
-          , {
-            data: 'pem_pendamping'
-            , name: 'pem_pendamping'
-          }
-          , {
-            data: 'judul_ta'
-            , name: 'judul_ta'
           }
           , {
             data: 'tgl_add'

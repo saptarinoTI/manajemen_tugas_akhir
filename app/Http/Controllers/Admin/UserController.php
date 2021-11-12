@@ -38,7 +38,7 @@ class UserController extends Controller
     {
         $request->validate([
             'username' => 'required|unique:users,username',
-            'role' => 'required|in:admin,laboratorium,staff',
+            'role' => 'required',
         ]);
 
         $user = new User;

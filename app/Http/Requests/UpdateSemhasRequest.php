@@ -26,9 +26,9 @@ class UpdateSemhasRequest extends FormRequest
         return [
             'krs' => 'file|max:1024|mimetypes:application/pdf',
             'transkip_nilai' => 'file|max:1024|mimetypes:application/pdf',
-            'laporan_kp' => 'max:1024|image|mimes:jpeg,png,jpg',
-            'keuangan' => 'max:1024|image|mimes:jpeg,png,jpg',
-            'konsultasi' => 'max:1024|image|mimes:jpeg,png,jpg',
+            'laporan_kp' => 'file|max:1024|mimetypes:application/pdf',
+            'keuangan' => 'file|max:1024|mimetypes:application/pdf',
+            'konsultasi' => 'file|max:1024|mimetypes:application/pdf',
         ];
     }
 
@@ -37,8 +37,7 @@ class UpdateSemhasRequest extends FormRequest
         return [
             'max' => 'File :attribute maksimal 1MB.',
             'mimetypes' => 'File :attribute harus berupa pdf.',
-            'mimes' => 'File :attribute harus berupa jpeg, jpg dan png.',
-            'image' => 'File :attribute harus berupa gambar.',
+            'required' => 'Form tidak boleh kosong',
         ];
     }
 }

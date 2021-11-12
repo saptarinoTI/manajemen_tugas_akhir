@@ -20,7 +20,10 @@ class CreateProposalTable extends Migration
             $table->string('file2')->nullable();
             $table->string('file3')->nullable();
             $table->date('tgl_terima')->nullable();
-            $table->enum('status', ['terima', 'tolak', 'validasi'])->default('terima');
+            $table->string('utama_id', 100)->nullable()->references('id')->on('dosen')->onDelete('cascade');
+            $table->string('pendamping_id', 100)->nullable()->references('id')->on('dosen')->onDelete('cascade');
+            $table->text('judul_ta')->nullable();
+            $table->enum('status', ['dikirim', 'diproses', 'diterima', 'ditolak'])->default('dikirim');
             $table->text('keterangan');
             $table->timestamps();
         });

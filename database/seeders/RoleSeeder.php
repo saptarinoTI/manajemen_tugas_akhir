@@ -15,6 +15,11 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::create([
+            'name' => 'superadmin',
+            'guard_name' => 'web',
+        ]);
+
+        Role::create([
             'name' => 'admin',
             'guard_name' => 'web',
         ]);
@@ -25,7 +30,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'laboratorium',
+            'name' => 'prodi',
             'guard_name' => 'web',
         ]);
 
@@ -35,7 +40,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'superadmin',
+            'name' => 'dosen',
             'guard_name' => 'web',
         ]);
     }

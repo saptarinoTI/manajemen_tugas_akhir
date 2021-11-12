@@ -31,15 +31,15 @@
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Utama') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($seminar->mahasiswa->pem_utama) }}" readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($seminar->mahasiswa->proposal->dosen1->nama) }}" readonly disabled />
           </div>
           <div class="col-sm-6 my-1">
             <x-form.label value="{{ __('Pembimbing Pendamping') }}" />
-            <input class="form-control fw-bold text-light" value="{{ ucwords($seminar->mahasiswa->pem_pendamping) }}" readonly disabled />
+            <input class="form-control fw-bold text-light" value="{{ ucwords($seminar->mahasiswa->proposal->dosen2->nama) }}" readonly disabled />
           </div>
           <div class="col-sm-12 my-1">
             <x-form.label value="{{ __('Judul Tugas Akhir') }}" />
-            <textarea class="form-control fw-bold text-light" rows="2" readonly disabled>{{ ucwords($seminar->mahasiswa->judul_ta) }}</textarea>
+            <textarea class="form-control fw-bold text-light" rows="2" readonly disabled>{{ ucwords($seminar->mahasiswa->proposal->judul_ta) }}</textarea>
           </div>
         </div>
 
@@ -84,7 +84,7 @@
               </div>
               <div class="col-md-7 form-group my-3">
                 <a href="{{ Storage::url($seminar->laporan_kp) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('laporan_kp') is-invalid @enderror" name="laporan_kp" value="{{ old('laporan_kp') }}" />
                 <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
@@ -97,7 +97,7 @@
               </div>
               <div class="col-md-7 form-group my-3">
                 <a href="{{ Storage::url($seminar->keuangan) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('keuangan') is-invalid @enderror" name="keuangan" value="{{ old('keuangan') }}" />
                 <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>
@@ -110,7 +110,7 @@
               </div>
               <div class="col-md-7 form-group my-3">
                 <a href="{{ Storage::url($seminar->konsultasi) }}" target="_blank" rel="noopener noreferrer">
-                  <small class="fw-bold"><i class="bi bi-images text-dark" style="font-size: 28px"></i></small>
+                  <small class="fw-bold"><i class="bi bi-card-text text-dark" style="font-size: 28px"></i></small>
                 </a>
                 <input type="file" class="form-control @error('konsultasi') is-invalid @enderror" name="konsultasi" value="{{ old('konsultasi') }}" />
                 <div class="form-text">* Upload file GAMBAR maksimal 1MB.</div>

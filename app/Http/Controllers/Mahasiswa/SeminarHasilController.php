@@ -19,14 +19,28 @@ class SeminarHasilController extends Controller
     public function index()
     {
         $nim = Auth::user()->username;
-        $mahasiswa = Mahasiswa::where('nim', '=', $nim)->first();
-        if ($mahasiswa) {
-            $seminar = Seminar::select('id', 'mahasiswa_nim', 'status', 'keterangan', 'created_at', 'updated_at')->where('mahasiswa_nim', '=', $mahasiswa->nim)->first();
-        } else {
-            Alert::toast('Silahkan isi data diri, sebelum mendaftar seminar hasil', 'warning');
-            return redirect()->route('data-diri.index');
+        $mahasiswa = Mahasiswa::where('nim', '=', $nim)->with('seminar')->first();
+        $proposal = Mahasiswa::where('nim', '=', $nim)->whereHas('proposal', function ($query) {
+            $query->select('status');
+        })->first();
+        // dd($mahasiswa->seminar);
+        if ($mahasiswa === null) {
+            Alert::toast('Silahkan isi data diri, sebelum mendaftar pendadaran.', 'warning');
+            return redirect()->back();
         }
-        return view('mahasiswa.semhas.index', compact('mahasiswa', 'seminar'));
+
+        if ($mahasiswa->proposal) {
+            if ($mahasiswa->proposal->status === "diterima") {
+                $seminar = Seminar::where('mahasiswa_nim', '=', $mahasiswa->nim)->first();
+            } else {
+                Alert::toast('Proposal tugas akhir belum diterima, silahkan selesaikan terlebih dahulu.', 'warning');
+                return redirect()->back();
+            }
+        } else {
+            Alert::toast('Silahkan selesaikan proposal tugas akhir, sebelum mendaftar seminar hasil.', 'warning');
+            return redirect()->back();
+        }
+        return view('mahasiswa.semhas.index', compact('seminar', 'mahasiswa'));
     }
 
     public function create()
@@ -39,7 +53,6 @@ class SeminarHasilController extends Controller
     public function store(SemhasRequest $request)
     {
         $nim = $request->mahasiswa_nim;
-        // Insert to File Semhas Table
         $file = new Seminar;
         $file->mahasiswa_nim = $nim;
         $file->krs = $this->uploadFile($request, 'krs', 'semhas/krs', $nim);
@@ -47,8 +60,8 @@ class SeminarHasilController extends Controller
         $file->laporan_kp = $this->uploadFile($request, 'laporan_kp', 'semhas/laporan_kp', $nim);
         $file->keuangan = $this->uploadFile($request, 'keuangan', 'semhas/keuangan', $nim);
         $file->konsultasi = $this->uploadFile($request, 'konsultasi', 'semhas/konsultasi', $nim);
-        // $file->keterangan = "silahkan bertemu prodi teknik informatika, untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.";
-        // $file->status = 'pending';
+        $file->keterangan = "silahkan bertemu prodi teknik informatika, untuk memberikan berkas tugas akhir yang sudah ditanda tangani oleh dosen pembimbing. sebanyak 1 rangkap asli + 3 rangkap fotocopy.";
+        $file->status = 'dikirim';
         $seminar = $file->save();
 
         if ($seminar) {

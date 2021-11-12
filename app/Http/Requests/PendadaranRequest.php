@@ -27,7 +27,7 @@ class PendadaranRequest extends FormRequest
             'mahasiswa_nim' => 'required',
             'krs' => 'required|file|max:1024|mimetypes:application/pdf',
             'transkip_nilai' => 'required|file|max:1024|mimetypes:application/pdf',
-            'konsultasi' => 'required|max:1024|image|mimes:jpeg,png,jpg',
+            'konsultasi' => 'required|file|max:1024|mimetypes:application/pdf',
             'perkuliahan' => 'required|file|max:1024|mimetypes:application/pdf',
             'keuangan' => 'required|file|max:1024|mimetypes:application/pdf',
             'perpustakaan' => 'required|file|max:1024|mimetypes:application/pdf',
@@ -35,9 +35,9 @@ class PendadaranRequest extends FormRequest
             'action' => 'required|file|max:1024|mimetypes:application/pdf',
             'kompetensi' => 'required|file|max:1024|mimetypes:application/pdf',
             'toefl' => 'required|file|max:1024|mimetypes:application/pdf',
-            'ijazah' => 'required|max:1024|image|mimes:jpeg,png,jpg',
-            'ktp' => 'required|max:1024|image|mimes:jpeg,png,jpg',
-            'akte' => 'required|max:1024|image|mimes:jpeg,png,jpg',
+            'ijazah' => 'required|file|max:1024|mimetypes:application/pdf',
+            'ktp' => 'required|file|max:1024|mimetypes:application/pdf',
+            'akte' => 'required|file|max:1024|mimetypes:application/pdf',
             'foto' => 'required|max:1024|image|mimes:jpeg,png,jpg',
         ];
     }
@@ -45,7 +45,7 @@ class PendadaranRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'File :attribute wajib diisi.',
+            'required' => 'Form :attribute wajib diisi.',
             'max' => 'File :attribute maksimal 1MB.',
             'mimetypes' => 'File :attribute harus berupa pdf.',
             'mimes' => 'File :attribute harus berupa jpeg, jpg dan png.',

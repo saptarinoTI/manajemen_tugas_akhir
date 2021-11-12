@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Dosen\Dosen;
+use App\Models\Pembimbing\Pembimbing;
 use App\Models\Pendadaran\Pendadaran;
 use App\Models\Proposal\Proposal;
 use App\Models\Seminar\Seminar;
@@ -17,7 +19,7 @@ class Mahasiswa extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'nim', 'nama', 'no_hp', 'tmpt_lahir', 'tgl_lahir', 'alamat', 'pem_utama', 'pem_pendamping', 'judul_ta',
+        'nim', 'nama', 'no_hp', 'tmpt_lahir', 'tgl_lahir', 'alamat', 'judul_ta',
     ];
 
     public function seminar()
@@ -32,6 +34,6 @@ class Mahasiswa extends Model
 
     public function proposal()
     {
-        return $this->hasOne(Proposal::class);
+        return $this->hasOne(Proposal::class, 'mahasiswa_nim', 'nim');
     }
 }
