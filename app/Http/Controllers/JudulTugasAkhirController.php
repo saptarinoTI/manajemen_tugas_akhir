@@ -13,7 +13,7 @@ class JudulTugasAkhirController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Pendadaran::where('status', '=', 'diterima')->get();
+            $data = Proposal::where('status', '=', 'diterima')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('daftar_ta', function ($data) {
