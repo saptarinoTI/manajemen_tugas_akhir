@@ -11,7 +11,7 @@ class DataProposalController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $data = Proposal::with('mahasiswa');
+        $data = Proposal::all();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('nim', function ($row) {
@@ -21,14 +21,13 @@ class DataProposalController extends Controller
                 return ucwords($row->mahasiswa->nama);
             })
             ->addColumn('status', function ($row) {
-                // if ($row->status == 'terima') {
-                //     return '<span class="badge bg-success">Diterima</span>';
-                // } elseif ($row->status == 'tolak') {
-                //     return '<span class="badge bg-danger">Ditolak</span>';
-                // } else {
-                //     return '<span class="badge bg-info">Validasi</span>';
-                // }
-                return ucwords($row->status);
+                if ($row->status == 'diterima') {
+                    return '<span class="badge bg-success">Diterima</span>';
+                } elseif ($row->status == 'ditolak') {
+                    return '<span class="badge bg-danger">Ditolak</span>';
+                } else {
+                    return '<span class="badge bg-info">Dikirm</span>';
+                }
             })
             ->addColumn('tgl_terima', function ($row) {
                 if ($row->tgl_terima == null) {

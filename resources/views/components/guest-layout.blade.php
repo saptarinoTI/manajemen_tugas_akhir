@@ -14,7 +14,13 @@
   <title>{{ $title }}</title>
   <link rel="stylesheet" href="{{ url('/css/auth.css') }}">
   <link rel="shortcut icon" href="{{ url('img/logo/logo-color.png') }}" type="image/x-icon">
-  <x-app._header />
+  <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap5.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/fixedHeader.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 
   <style>
     .login {
@@ -31,20 +37,40 @@
       font-weight: 300;
     }
 
-    .btn-login {
-      font-size: 0.9rem;
-      letter-spacing: 0.05rem;
-      padding: 0.75rem 1rem;
+    a {
+      text-decoration: none;
+      color: #0074D9;
+    }
+
+    .underline {
+      position: relative;
+    }
+
+    .underline::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 2px;
+      background-color: #0074D9;
+      transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .underline:hover::before {
+        left: 0;
+        right: auto;
+        width: 100%;
+      }
     }
 
   </style>
 </head>
 
-<body>
+<body style="background-color: #f5f5f5">
 
-  {{-- <div class="container"> --}}
   {{ $slot }}
-  {{-- </div> --}}
 
   @include('sweetalert::alert')
 

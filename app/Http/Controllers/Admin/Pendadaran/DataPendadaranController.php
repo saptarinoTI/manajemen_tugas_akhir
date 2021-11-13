@@ -42,7 +42,7 @@ class DataPendadaranController extends Controller
         $pendadaran->status = strtolower(htmlspecialchars($request->status));
         if ($pendadaran->status == 'diterima') {
             if ($request->keterangan == null) {
-                $pendadaran->keterangan = 'pendaftarakan telah diterima, silahkan menunggu untuk jadwal sidang pendadaran.';
+                $pendadaran->keterangan = 'pendaftarakan telah diterima, silahkan menunggu untuk jadwal sidang pendadaran';
                 $pendadaran->proposal_id = $proposal->id;
                 $pendadaran->tgl_terima =  date(now());
             } else {

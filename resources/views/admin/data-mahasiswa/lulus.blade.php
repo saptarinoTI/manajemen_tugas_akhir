@@ -10,12 +10,12 @@
             <tr>
               <th>NIM</th>
               <th>Nama</th>
-              {{-- <th>No HP</th> --}}
               <th>Tempat & Tanggal Lahir</th>
-              {{-- <th>Alamat</th> --}}
-              <th>Tgl. Submit</th>
-              <th>Tgl. Update</th>
-              {{-- <th>Aksi</th> --}}
+              <th>Thn. Lulus</th>
+              <th>Status</th>
+              <th>Judul TA</th>
+              <th>Pem. Utama</th>
+              <th>Pem. Pendamping</th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +67,7 @@
         processing: true
         , serverSide: true
         , responsive: true
-        , ajax: "{{ route('getdata-mahasiswa') }}"
+        , ajax: "{{ route('data-lulus.index') }}"
         , columns: [{
             data: 'nim'
             , name: 'nim'
@@ -76,30 +76,30 @@
             data: 'nama'
             , name: 'nama'
           }
-          //   , {
-          //     data: 'no_hp'
-          //     , name: 'no_hp'
-          //   }
           , {
             data: 'ttl'
             , name: 'ttl'
           }
-          //   , {
-          //     data: 'alamat'
-          //     , name: 'alamat'
-          //   }
           , {
-            data: 'tgl_add'
-            , name: 'tgl_add'
+            data: 'thn_lulus'
+            , name: 'thn_lulus'
           }
           , {
-            data: 'tgl_update'
-            , name: 'tgl_update'
+            data: 'status'
+            , name: 'status'
           }
-          //   , {
-          //     data: 'btn'
-          //     , name: 'btn'
-          //   }
+          , {
+            data: 'judul_ta'
+            , name: 'judul_ta'
+          }
+          , {
+            data: 'utama'
+            , name: 'utama'
+          }
+          , {
+            data: 'pendamping'
+            , name: 'pendamping'
+          }
         , ]
       });
     });

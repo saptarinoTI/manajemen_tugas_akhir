@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\Pendadaran\Pendadaran;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -17,28 +18,46 @@ class LulusController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Mahasiswa::all();
+            $data = Pendadaran::all();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->addColumn('nim', function ($row) {
+                    return ucwords($row->mahasiswa->nim);
+                })
                 ->addColumn('nama', function ($row) {
-                    return ucwords($row->nama);
+                    return ucwords($row->mahasiswa->nama);
                 })
                 ->addColumn('ttl', function ($row) {
-                    return ucwords($row->tmpt_lahir) . ', ' . date('d M Y', strtotime($row->tgl_lahir));
+                    return ucwords($row->mahasiswa->tmpt_lahir) . ', ' . date('d M Y', strtotime($row->mahasiswa->tgl_lahir));
                 })
                 ->addColumn('alamat', function ($row) {
-                    return ucwords($row->alamat);
+                    return ucwords($row->mahasiswa->alamat);
                 })
-                ->addColumn('tgl_add', function ($row) {
-                    return date('d F Y', strtotime($row->created_at));
+                ->addColumn('thn_lulus', function ($row) {
+                    return date('Y', strtotime($row->tgl_terima));
                 })
-                ->addColumn('tgl_update', function ($row) {
-                    return date('d F Y', strtotime($row->updated_at));
+                ->addColumn('status', function ($row) {
+                    $a = substr($row->mahasiswa->nim, 0, -5);
+                    $b = date('Y', strtotime($row->tgl_terima));
+                    $c = $b - $a;
+                    $d = $c - 4;
+                    if ($c <= 4) {
+                        return 'Lulus Tepat Waktu';
+                    } else {
+                        return 'Lulus Terlambat ' . $d . ' tahun';
+                    }
+                    // return date('Y', $row->tgl_terima);
                 })
-                ->addColumn('btn', function ($row) {
-                    return '<a href="data-mahasiswa/' . $row->nim . '" class="btn btn-delete btn-danger btn-sm"><span class="text-sm">Hapus Data</span></a>';
+                ->addColumn('judul_ta', function ($row) {
+                    return ucwords($row->proposal->judul_ta);
                 })
-                ->rawColumns(['nama', 'ttl', 'alamat', 'pem_utama', 'pem_pendamping', 'judul_ta', 'tgl_add', 'tgl_update', 'btn'])
+                ->addColumn('utama', function ($row) {
+                    return ucwords($row->proposal->dosen1->nama);
+                })
+                ->addColumn('pendamping', function ($row) {
+                    return ucwords($row->proposal->dosen2->nama);
+                })
+                ->rawColumns(['nim', 'nama', 'ttl', 'alamat', 'pem_utama', 'pem_pendamping', 'status', 'judul_ta', 'thn_lulus', 'utama', 'pendamping'])
                 ->make(true);
         }
         return view('admin.data-mahasiswa.lulus');

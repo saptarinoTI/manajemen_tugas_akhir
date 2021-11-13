@@ -96,7 +96,7 @@ Route::middleware(['auth', 'verified', 'role:admin|prodi|staff|superadmin'])->gr
     Route::resource('data-pendadaran', DataPendadaranController::class)->except('create', 'store', 'destroy');
     Route::get('getdata-pendadaran', GetDataPendadaranController::class)->name('getdata-pendadaran');
     // Data Pendadaran
-    Route::resource('data-lulus', LulusController::class)->except('create', 'store', 'destroy');
+    Route::resource('data-lulus', LulusController::class);
 });
 
 Route::middleware(['auth', 'verified', 'role:mahasiswa|superadmin'])->group(function () {

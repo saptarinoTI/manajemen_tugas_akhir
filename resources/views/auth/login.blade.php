@@ -91,7 +91,7 @@
               </div>
             </form>
             <div class="text-center">
-              <a class="my-4" href="{{ route('judul-ta.index') }}" style="color: #1D2D50;" type="submit">Daftar Judul Tugas Akhir</a>
+              <a class="underline my-4" href="{{ route('judul-ta.index') }}" type="submit">Daftar Judul Tugas Akhir</a>
             </div>
             </form>
           </div>

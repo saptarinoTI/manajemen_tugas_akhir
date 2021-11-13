@@ -73,7 +73,7 @@
   </div>
   @endhasrole
 
-  @hasrole('superadmin|admin')
+  @hasrole('superadmin|admin|staff|prodi')
   <div class="row">
     <div class="col-12 col-lg-4">
       <div class="card">
@@ -188,8 +188,8 @@
 
     @push('script')
     <script>
-      var label = {!! $label !!};
-      var user = {!! $user !!};
+      var label = {!!$label!!};
+      var user = {!!$user!!};
       var barChartData = {
         labels: label
         , datasets: [{

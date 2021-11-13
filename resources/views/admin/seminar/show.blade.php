@@ -3,20 +3,24 @@
     <tr>
       <th class="col-4">Tempat Tanggal Lahir</th>
       <th>:</th>
-      <td>{{ ucwords($mahasiswa->tmpt_lahir) . ', ' . date('d M Y', strtotime($mahasiswa->tgl_lahir ))}}</td>
+      <td>{{ ucwords($mahasiswa->tmpt_lahir) . ', ' . date('d F Y', strtotime($mahasiswa->tgl_lahir ))}}</td>
     </tr>
 
+    @if ($mahasiswa->no_hp)
     <tr>
       <th class="col-4">Nomor HP</th>
       <th>:</th>
       <td>{{ $mahasiswa->no_hp }}</td>
     </tr>
+    @endif
 
+    @if ($mahasiswa->alamat != null)
     <tr>
       <th class="col-4">Alamat</th>
       <th>:</th>
       <td>{{ ucwords($mahasiswa->alamat) }}</td>
     </tr>
+    @endif
 
     <tr>
       <th class="col-4">Pembimbing Utama</th>
@@ -70,12 +74,12 @@
       <th class="col-4">Status</th>
       <th>:</th>
       <td>
-        @if ($mahasiswa->seminar->status == 'terima')
+        @if ($mahasiswa->seminar->status == 'diterima')
         <span class="badge bg-success">Diterima
-          @elseif ($mahasiswa->seminar->status == 'tolak')
+          @elseif ($mahasiswa->seminar->status == 'ditolak')
           <span class="badge bg-danger">Ditolak
             @else
-            <span class="badge bg-info">Validasi
+            <span class="badge bg-info">Dikirim
               @endif
             </span>
       </td>

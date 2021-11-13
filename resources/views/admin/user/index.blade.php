@@ -3,9 +3,11 @@
 
   {{-- Table Data Mahasiswa --}}
   <div class="card">
+    @if (auth()->user()->hasRole('admin|superadmin'))
     <div class="card-header d-flex justify-content-end">
       <a href="{{ route('users.create') }}" class="btn btn-primary">Tambah Data</a>
     </div>
+    @endif
     <div class="card-body">
       <div class="table-responsive">
         <table id="table-users" class="table table-striped" style="width:100%">
@@ -14,7 +16,11 @@
               <th>Username</th>
               <th>Email</th>
               <th>Role</th>
+              @if (auth()->user()->hasRole('admin|superadmin'))
               <th>Aksi</th>
+              @else
+              <th></th>
+              @endif
             </tr>
           </thead>
           <tbody>

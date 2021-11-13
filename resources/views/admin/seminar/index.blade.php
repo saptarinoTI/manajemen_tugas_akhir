@@ -29,6 +29,7 @@
         processing: true
         , serverSide: true
         , responsive: true
+        , bLengthChange: false
         , ajax: "{{ route('data-seminarhasil.index') }}"
         , columns: [{
             data: 'nim'

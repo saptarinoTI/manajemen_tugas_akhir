@@ -50,7 +50,7 @@ class DosenSeed extends Seeder
                 ],
                 [
                     'niy' => '551000018',
-                    'nama' => 'abdil zain, S.T., M.T.',
+                    'nama' => 'abdul zain, S.T., M.T.',
                 ],
                 [
                     'niy' => '551000043',

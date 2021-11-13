@@ -1,8 +1,8 @@
 <x-guest-layout>
-  <nav class="fixed-top navbar navbar-expand-lg navbar-light bg-white static-top" style="box-shadow: 0px 0px 10px 1px #b8b8b8;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin: 0; padding: 0; box-shadow: 0px 0px 10px 1px #b8b8b8;">
     <div class="container">
-      <a href="#" class="pt-2">
-        <img src="{{ asset('/img/logo/logo-color2.png') }}" alt="logo" width="250">
+      <a href="{{ route('home') }}">
+        <img src="{{ asset('img/logo/logo-light.png') }}" style="max-width: 150px">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,19 +11,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="btn btn-primary" href="{{ route('login') }}">Login</a>
+            <a class="btn btn-sm py-1 px-3 btn-danger" href="{{ route('login') }}" style="letter-spacing: .1rem">Login</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  {{-- Table Data Mahasiswa --}}
   <div class="container">
-    <div class="card" style="margin-top: 7rem">
-      <div class="card-head">
-        <h4 class="fw-bold pt-3 px-4">Daftar Judul Tugas Akhir</h4>
-      </div>
+    <h4 class="fw-bold my-3 pt-3" style="color: #333333">Daftar Judul Tugas Akhir</h4>
+
+
+
+    <div class="card">
       <div class="card-body">
         <div class="table-responsive">
           <table id="tabel_tugas_akhir" class="table" style="width:100%">
@@ -50,6 +50,7 @@
         processing: true
         , serverSide: true
         , responsive: true
+        , bLengthChange: false
         , ajax: "{{ route('judul-ta.index') }}"
         , columns: [{
           data: 'daftar_ta'

@@ -6,17 +6,21 @@
       <td>{{ ucwords($mahasiswa->tmpt_lahir) . ', ' . date('d M Y', strtotime($mahasiswa->tgl_lahir ))}}</td>
     </tr>
 
+    @if ($mahasiswa->no_hp != null)
     <tr>
       <th class="col-4">Nomor HP</th>
       <th>:</th>
       <td>{{ $mahasiswa->no_hp }}</td>
     </tr>
+    @endif
 
+    @if ($mahasiswa->alamat != null)
     <tr>
       <th class="col-4">Alamat</th>
       <th>:</th>
       <td>{{ ucwords($mahasiswa->alamat) }}</td>
     </tr>
+    @endif
 
     <tr>
       <th class="col-4">Pembimbing Utama</th>
@@ -125,12 +129,12 @@
       <th class="col-4">Status</th>
       <th>:</th>
       <td>
-        @if ($mahasiswa->pendadaran->status == 'terima')
+        @if ($mahasiswa->pendadaran->status == 'diterima')
         <span class="badge bg-success">Diterima
-          @elseif ($mahasiswa->pendadaran->status == 'tolak')
+          @elseif ($mahasiswa->pendadaran->status == 'ditolak')
           <span class="badge bg-danger">Ditolak
             @else
-            <span class="badge bg-info">Validasi
+            <span class="badge bg-info">Dikirim
               @endif
             </span>
       </td>
@@ -139,13 +143,13 @@
     <tr>
       <th class="col-4">Tgl. Submit</th>
       <th>:</th>
-      <td>{{ date('d F Y', strtotime($mahasiswa->seminar->created_at)) }}</td>
+      <td>{{ date('d F Y', strtotime($mahasiswa->pendadaran->created_at)) }}</td>
     </tr>
 
     <tr>
       <th class="col-4">Tgl. Update</th>
       <th>:</th>
-      <td>{{ date('d F Y', strtotime($mahasiswa->seminar->updated_at)) }}</td>
+      <td>{{ date('d F Y', strtotime($mahasiswa->pendadaran->updated_at)) }}</td>
     </tr>
 
     <tr>

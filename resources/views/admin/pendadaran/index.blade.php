@@ -29,6 +29,8 @@
       var table = $('#table1').DataTable({
         processing: true
         , serverSide: true
+        , responsive: true
+        , bLengthChange: false
         , ajax: "{{ route('getdata-pendadaran') }}"
         , columns: [{
             data: 'nim'

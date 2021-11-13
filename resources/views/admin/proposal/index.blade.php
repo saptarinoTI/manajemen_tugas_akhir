@@ -28,6 +28,8 @@
       var table = $('#table1').DataTable({
         processing: true
         , serverSide: true
+        , responsive: true
+        , bLengthChange: false
         , ajax: "{{ route('getdata-proposal') }}"
         , columns: [{
             data: 'nim'

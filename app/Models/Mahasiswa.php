@@ -36,4 +36,9 @@ class Mahasiswa extends Model
     {
         return $this->hasOne(Proposal::class, 'mahasiswa_nim', 'nim');
     }
+
+    public function proposal1()
+    {
+        return $this->hasOne(Proposal1::class, 'mahasiswa_nim', 'nim');
+    }
 }
