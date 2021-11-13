@@ -42,9 +42,9 @@ class LulusController extends Controller
                     $c = $b - $a;
                     $d = $c - 4;
                     if ($c <= 4) {
-                        return 'Lulus Tepat Waktu';
+                        return '<p class="badge py-2 px-3 bg-success">Lulus</p>';
                     } else {
-                        return 'Lulus Terlambat ' . $d . ' tahun';
+                        return '<p class="badge py-2 px-3 bg-danger">Lulus + ' . $d . ' tahun</p>';
                     }
                     // return date('Y', $row->tgl_terima);
                 })
