@@ -17,9 +17,13 @@
             <tr>
               <th>NIM</th>
               <th>Nama</th>
-              <th>No HP</th>
+              @if ($mahasiswa->no_hp != null)
+                  <th>No HP</th>
+              @endif
               <th>Tempat, Tanggal Lahir</th>
-              <th>Alamat</th>
+              @if ($mahasiswa->alamat != null)
+                  <th>Alamat</th>
+              @endif
               <th>Aksi</th>
             </tr>
           </thead>
@@ -28,9 +32,17 @@
             <tr>
               <td>{{ $mahasiswa->nim }}</td>
               <td>{{ ucwords($mahasiswa->nama) }}</td>
-              <td>{{ $mahasiswa->no_hp }}</td>
+              @if ($mahasiswa->no_hp != null)
+              <td>
+                  {{ $mahasiswa->no_hp }}
+                </td>
+                @endif
               <td>{{ ucwords($mahasiswa->tmpt_lahir).', '.date('d M Y', strtotime($mahasiswa->tgl_lahir)) }}</td>
-              <td>{{ ucwords($mahasiswa->alamat) }}</td>
+              @if ($mahasiswa->alamat != null)
+              <td>
+                {{ ucwords($mahasiswa->alamat) }}
+            </td>
+            @endif
               <td>
                 <a href="{{ route('data-diri.edit', $mahasiswa->nim) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
               </td>
