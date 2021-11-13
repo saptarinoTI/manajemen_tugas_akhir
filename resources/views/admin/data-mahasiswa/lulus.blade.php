@@ -10,7 +10,6 @@
                         <tr>
                             <th>NIM</th>
                             <th>Nama</th>
-                            <th>Tempat & Tanggal Lahir</th>
                             <th>Thn. Lulus</th>
                             <th>Status</th>
                             <th>Judul TA</th>
@@ -77,9 +76,6 @@
                     }, {
                         data: 'nama',
                         name: 'nama'
-                    }, {
-                        data: 'ttl',
-                        name: 'ttl'
                     }, {
                         data: 'thn_lulus',
                         name: 'thn_lulus'

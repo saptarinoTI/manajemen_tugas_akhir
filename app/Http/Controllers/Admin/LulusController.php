@@ -27,9 +27,6 @@ class LulusController extends Controller
                 ->addColumn('nama', function ($row) {
                     return ucwords($row->mahasiswa->nama);
                 })
-                ->addColumn('ttl', function ($row) {
-                    return ucwords($row->mahasiswa->tmpt_lahir) . ', ' . date('d M Y', strtotime($row->mahasiswa->tgl_lahir));
-                })
                 ->addColumn('alamat', function ($row) {
                     return ucwords($row->mahasiswa->alamat);
                 })
@@ -57,7 +54,7 @@ class LulusController extends Controller
                 ->addColumn('pendamping', function ($row) {
                     return ucwords($row->proposal->dosen2->nama);
                 })
-                ->rawColumns(['nim', 'nama', 'ttl', 'alamat', 'pem_utama', 'pem_pendamping', 'status', 'judul_ta', 'thn_lulus', 'utama', 'pendamping'])
+                ->rawColumns(['nim', 'nama', 'alamat', 'pem_utama', 'pem_pendamping', 'status', 'judul_ta', 'thn_lulus', 'utama', 'pendamping'])
                 ->make(true);
         }
         return view('admin.data-mahasiswa.lulus');
