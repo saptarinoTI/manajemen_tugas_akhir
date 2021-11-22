@@ -10,6 +10,7 @@
                             <th>NIM</th>
                             <th>Nama</th>
                             <th>Judul Skripsi</th>
+                            <th>Pemb.</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,24 +21,27 @@
     </div>
 
     @push('script')
-    <script>
-        $(function() {
-            var table = $('#tabelbimbingan').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "{{ route('dosen-bimbingan.index') }}",
-                columns: [{
-                    data: 'mahasiswa_nim',
-                    name: 'mahasiswa_nim'
-                }, {
-                    data: 'nama',
-                    name: 'nama'
-                }, {
-                    data: 'judul',
-                    name: 'judul'
-                }, ]
+        <script>
+            $(function() {
+                var table = $('#tabelbimbingan').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: "{{ route('dosen-bimbingan.index') }}",
+                    columns: [{
+                        data: 'mahasiswa_nim',
+                        name: 'mahasiswa_nim'
+                    }, {
+                        data: 'nama',
+                        name: 'nama'
+                    }, {
+                        data: 'judul',
+                        name: 'judul'
+                    }, {
+                        data: 'status',
+                        name: 'status'
+                    }, ]
+                });
             });
-        });
-    </script>
+        </script>
     @endpush
 </x-app-layout>

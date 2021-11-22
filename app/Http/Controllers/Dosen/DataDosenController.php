@@ -26,7 +26,14 @@ class DataDosenController extends Controller
                 ->addColumn('judul', function ($row) {
                     return ucwords($row->judul_ta);
                 })
-                ->rawColumns(['nama', 'judul'])
+                ->addColumn('status', function ($row) {
+                    if ($row->utama_id === Auth::user()->username) {
+                        return 'Utama';
+                    } elseif ($row->pendamping_id === Auth::user()->username) {
+                        return 'Pendamping';
+                    }
+                })
+                ->rawColumns(['nama', 'judul', 'status'])
                 ->make(true);
         }
         return view('dosen.bimbingan.index');

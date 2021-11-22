@@ -15,22 +15,9 @@
                 <table id="tabel_proposal" class="table table-striped nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>File</th>
-                            @if ($proposal)
-                                @if ($proposal->file2 != null)
-                                    <th>File 2</th>
-                                @endif
-                                @if ($proposal->file3 != null)
-                                    <th>File 3</th>
-                                @endif
-                            @endif
                             <th>Status</th>
                             <th>Keterangan</th>
-                            @if ($proposal)
-                                @if ($proposal->status != 'diterima')
-                                    <th>Aksi</th>
-                                @endif
-                            @endif
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,26 +25,6 @@
                             <p class="fw-bold text-xs d-flex justify-content-end" style="letter-spacing: 1px">Submit :
                                 {{ date('d F Y', strtotime($proposal->created_at)) }}</p>
                             <tr>
-                                <td>
-                                    <a href="{{ Storage::url($proposal->file1) }}" target="_blank"
-                                        rel="noopener noreferrer"><span class="btn btn-sm btn-primary"
-                                            style="font-size: 13px; padding: 4px 6px !important">Unduh</span></a>
-                                </td>
-                                @if ($proposal->file2 != null)
-                                    <td>
-                                        <a href="{{ Storage::url($proposal->file2) }}" target="_blank"
-                                            rel="noopener noreferrer"><span class="btn btn-sm btn-primary"
-                                                style="font-size: 13px; padding: 4px 6px !important">Unduh</span></a>
-                                    </td>
-                                @endif
-
-                                @if ($proposal->file3 != null)
-                                    <td>
-                                        <a href="{{ Storage::url($proposal->file3) }}" target="_blank"
-                                            rel="noopener noreferrer"><span class="btn btn-sm btn-primary"
-                                                style="font-size: 13px; padding: 4px 6px !important">Unduh</span></a>
-                                    </td>
-                                @endif
                                 <td>
                                     @if ($proposal->status == 'diterima')
                                         <span class="badge bg-success">Diterima
@@ -73,6 +40,14 @@
                                     <td>
                                         <a href="{{ route('proposal.edit', $proposal->id) }}"
                                             class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
+                                    </td>
+                                @else
+                                    <td>
+                                        <a href="#modalProposal"
+                                            data-remote="{{ route('proposal.show', $proposal->id) }}"
+                                            data-bs-toggle="modal" data-bs-target="#modalProposal"
+                                            data-title="Detail Proposal Tugas Akhir" class="my-1 btn btn-sm btn-info"><i
+                                                class="bi bi-eye-fill"></i></a>
                                     </td>
                                 @endif
                             </tr>
@@ -91,4 +66,33 @@
         </div>
     </div>
     {{-- End Table Data Mahasiswa --}}
+
+    @push('script')
+        <script>
+            $(document).ready(function($) {
+                // Modal
+                $("#modalProposal").on("show.bs.modal", function(e) {
+                    var button = $(e.relatedTarget);
+                    var modal = $(this);
+                    modal.find(".modal-body").load(button.data("remote"));
+                    modal.find(".modal-title").html(button.data("title"));
+                });
+            });
+        </script>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalProposal" tabindex="-1" aria-labelledby="mymodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endpush
 </x-app-layout>

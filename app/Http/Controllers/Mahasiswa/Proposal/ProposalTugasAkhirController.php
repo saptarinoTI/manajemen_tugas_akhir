@@ -84,7 +84,8 @@ class ProposalTugasAkhirController extends Controller
      */
     public function show($id)
     {
-        //
+        $pro = Proposal::findOrFail($id);
+        return view('admin.proposal.show', compact('pro'));
     }
 
     /**
