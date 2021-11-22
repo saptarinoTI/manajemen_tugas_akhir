@@ -1,6 +1,7 @@
 <nav class="navbar navbar-header navbar-expand navbar-light">
     <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
-    <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -11,9 +12,10 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     @role('mahasiswa')
-                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Akun</a>
+                        <a class="dropdown-item" href="#"><i data-feather="user"></i> Akun</a>
                     @endrole
-                    <a class="dropdown-item" href="{{ route('user-change-password') }}"><i data-feather="settings"></i>
+                    <a class="dropdown-item" href="{{ route('user-change-password') }}"><i
+                            data-feather="settings"></i>
                         Password</a>
                     <div class="dropdown-divider"></div>
                     <div class="dropdown-item">

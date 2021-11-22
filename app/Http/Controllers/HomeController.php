@@ -16,39 +16,41 @@ class HomeController extends Controller
     public function index()
     {
         if (auth()->user()->hasRole('superadmin|admin|mahasiswa|staff|prodi')) {
-            $label = [date('Y') - 2, date('Y') - 1, date('Y'), date('Y') + 1, date('Y') + 2];
-            $proposal = Proposal::where('status', '=', 'diterima')->count();
-            $proposalProses = Proposal::where('status', '=', 'dikirim')->count();
-            $updateMhs = Mahasiswa::latest('updated_at')->first();
-            $seminar = Seminar::where('status', '=', 'diterima')->count();
-            $seminarProses = Seminar::where('status', '=', 'dikirim')->count();
-            $updateSmnr = Seminar::latest('updated_at')->first();
-            $pendadaran = Pendadaran::where('status', '=', 'diterima')->count();
-            $pendadaranProses = Pendadaran::where('status', '=', 'dikirim')->count();
-            $updatePddrn = Pendadaran::latest('updated_at')->first();
+            $totalMhs = Mahasiswa::count();
+            $totalPen = Pendadaran::count();
+            $pendadaran = Pendadaran::all();
+            $cepat = [];
+            $lambat = [];
+            foreach ($pendadaran as $pen) {
+                $nim = substr($pen->mahasiswa_nim, 0, 4);
+                $tgl = substr($pen->tgl_terima, 0, 4);
+                $hasil = (int)$tgl - (int)$nim;
+                if ($hasil < 5) {
+                    $cepat[] = 0;
+                } else {
+                    $lambat[] = 0;
+                }
+            }
+
             $user = [];
+            $label = [date('Y') - 2, date('Y') - 1, date('Y'), date('Y') + 1, date('Y') + 2];
             foreach ($label as $key => $value) {
                 $user[] = Pendadaran::where(DB::raw("DATE_FORMAT(updated_at, '%Y')"), $value)->count();
             }
-            return view('home', compact('proposal', 'proposalProses', 'updateMhs', 'seminar', 'seminarProses', 'updateSmnr',  'pendadaran', 'pendadaranProses', 'updatePddrn'))->with('label', json_encode($label, JSON_NUMERIC_CHECK))->with('user', json_encode($user, JSON_NUMERIC_CHECK));
+            return view('home', compact('cepat', 'lambat', 'totalMhs', 'totalPen', 'pendadaran'))->with('label', json_encode($label, JSON_NUMERIC_CHECK))->with('user', json_encode($user, JSON_NUMERIC_CHECK));
         }
+
         if (auth()->user()->hasRole('dosen')) {
             $idDosen = Auth::user()->username;
             $pro = Proposal::where('utama_id', '=', $idDosen)
                 ->orWhere('pendamping_id', '=', $idDosen)
                 ->count();
+            $utama = Proposal::where('utama_id', '=', $idDosen)
+                ->count();
+            $pendamping = Proposal::where('pendamping_id', '=', $idDosen)
+                ->count();
 
-            $seminar = Seminar::whereHas('proposal', function (Builder $query) {
-                $query->where('utama_id', '=', auth()->user()->username)
-                    ->orWhere('pendamping_id', '=', auth()->user()->username);
-            })->count();
-
-            $pendadaran = Pendadaran::whereHas('proposal', function (Builder $query) {
-                $query->where('utama_id', '=', auth()->user()->username)
-                    ->orWhere('pendamping_id', '=', auth()->user()->username);
-            })->count();
-
-            return view('dosen.home', compact('pro', 'seminar', 'pendadaran'));
+            return view('dosen.home', compact('pro', 'utama', 'pendamping'));
         }
     }
 

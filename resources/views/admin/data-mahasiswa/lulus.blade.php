@@ -12,9 +12,7 @@
                             <th>Nama</th>
                             <th>Thn. Lulus</th>
                             <th>Status</th>
-                            <th>Judul TA</th>
-                            <th>Pem. Utama</th>
-                            <th>Pem. Pendamping</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,39 +25,6 @@
 
     @push('script')
         <script>
-            // button destroy
-            $('#table_data_mahasiswa').on('click', '.btn-delete', function(e) {
-                e.preventDefault();
-                var me = $(this),
-                    url = me.attr('href'),
-                    csrf_token = $('meta[name="csrf-token"]').attr('content');
-                swal({
-                        title: "Hapus Data ?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            $.ajax({
-                                type: "POST",
-                                url: url,
-                                data: {
-                                    '_method': 'DELETE',
-                                    '_token': csrf_token
-                                },
-                                success: function(response) {
-                                    $('#table_data_mahasiswa').DataTable().ajax.reload();
-                                    swal({
-                                        text: "Data berhasil dihapus!",
-                                        icon: "success",
-                                    });
-                                }
-                            });
-                        }
-                    });
-            });
-
             // Script of DataTables
             $(function() {
                 var table = $('#table_data_mahasiswa').DataTable({
@@ -68,7 +33,6 @@
                     ],
                     processing: true,
                     serverSide: true,
-                    responsive: true,
                     ajax: "{{ route('data-lulus.index') }}",
                     columns: [{
                         data: 'nim',
@@ -83,18 +47,35 @@
                         data: 'status',
                         name: 'status'
                     }, {
-                        data: 'judul_ta',
-                        name: 'judul_ta'
-                    }, {
-                        data: 'utama',
-                        name: 'utama'
-                    }, {
-                        data: 'pendamping',
-                        name: 'pendamping'
-                    }, ]
+                        data: 'aksi',
+                        name: 'aksi'
+                    }]
+                });
+            });
+            $(document).ready(function($) {
+                // Modal
+                $("#modalLulus").on("show.bs.modal", function(e) {
+                    var button = $(e.relatedTarget);
+                    var modal = $(this);
+                    modal.find(".modal-body").load(button.data("remote"));
+                    modal.find(".modal-title").html(button.data("title"));
                 });
             });
         </script>
 
+        <!-- Modal -->
+        <div class="modal fade" id="modalLulus" tabindex="-1" aria-labelledby="mymodalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endpush
 </x-app-layout>

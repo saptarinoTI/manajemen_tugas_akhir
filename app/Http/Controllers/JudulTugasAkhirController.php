@@ -20,7 +20,7 @@ class JudulTugasAkhirController extends Controller
                 ->addIndexColumn()
                 ->addColumn('daftar_ta', function ($data) {
                     return '<p style="margin: 2px 0; font-size: 16px; font-weight: 600; letter-spacing: .05rem">' . ucwords($data->judul_ta) . '</p>
-                <p style="margin: 0; font-size: 14px; font-weight: 400; color: #8a8a8a">' . ucwords($data->mahasiswa->nama) . ' (' . $data->mahasiswa->nim . ') || Pem. Utama: ' . ucwords($data->dosen1->nama) . '  --  Pem. Pendamping: ' . ucwords($data->dosen2->nama) . '</p>';
+                <p style="margin: 0; font-size: 14px; font-weight: 400; color: #8a8a8a">' . ucwords($data->mahasiswa->nama) . ' (' . $data->mahasiswa->nim . ') || Pembimbing : 1. ' . ucwords($data->dosen1->nama) . '  --  2. ' . ucwords($data->dosen2->nama) . '</p>';
                 })
                 ->rawColumns(['daftar_ta'])
                 ->make(true);

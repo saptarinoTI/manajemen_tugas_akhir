@@ -10,10 +10,25 @@ use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
 
+use function PHPSTORM_META\map;
+
 class MahasiswaController extends Controller
 {
     public function index()
     {
+        // $response = Http::get('http://api.siakad.stitek.ac.id/siakadzone/mahasiswa');
+        // $data = $response->json();
+        // $data = $data['data'];
+
+        // $userdupe = array();
+
+        // foreach ($data as $index => $t) {
+        //     if (isset($userdupe[$t["mhs_no"]])) {
+        //         unset($data[$index]);
+        //         continue;
+        //     }
+        //     $userdupe[$t["mhs_no"]] = true;
+        // }
         return view('admin.mahasiswa.index');
     }
 

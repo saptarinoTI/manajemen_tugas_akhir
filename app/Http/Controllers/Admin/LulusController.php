@@ -34,27 +34,24 @@ class LulusController extends Controller
                     return date('Y', strtotime($row->tgl_terima));
                 })
                 ->addColumn('status', function ($row) {
-                    $a = substr($row->mahasiswa->nim, 0, -5);
+                    $a = substr($row->mahasiswa->nim, 0, 4);
                     $b = date('Y', strtotime($row->tgl_terima));
                     $c = $b - $a;
                     $d = $c - 4;
+                    $ac = 0;
                     if ($c <= 4) {
                         return '<p class="badge py-2 px-3 bg-success">Lulus</p>';
                     } else {
                         return '<p class="badge py-2 px-3 bg-danger">Lulus + ' . $d . ' tahun</p>';
                     }
-                    // return date('Y', $row->tgl_terima);
                 })
-                ->addColumn('judul_ta', function ($row) {
-                    return ucwords($row->proposal->judul_ta);
+                ->addColumn('aksi', function ($row) {
+                    return '
+                <a href="#modalLulus" data-remote="' . route('data-lulus.show', $row->mahasiswa->nim) . '"
+            data-bs-toggle="modal" data-bs-target="#modalLulus"
+            data-title="Detail Mahasiswa Lulus" class="my-1 btn btn-sm btn-info"><i class="bi bi-eye-fill"></i></a>';
                 })
-                ->addColumn('utama', function ($row) {
-                    return ucwords($row->proposal->dosen1->nama);
-                })
-                ->addColumn('pendamping', function ($row) {
-                    return ucwords($row->proposal->dosen2->nama);
-                })
-                ->rawColumns(['nim', 'nama', 'alamat', 'pem_utama', 'pem_pendamping', 'status', 'judul_ta', 'thn_lulus', 'utama', 'pendamping'])
+                ->rawColumns(['nim', 'nama', 'alamat', 'pem_utama', 'pem_pendamping', 'status', 'aksi'])
                 ->make(true);
         }
         return view('admin.data-mahasiswa.lulus');
@@ -89,7 +86,8 @@ class LulusController extends Controller
      */
     public function show($id)
     {
-        //
+        $mahasiswa = Mahasiswa::findOrFail($id);
+        return view('admin.data-mahasiswa.lulus-show', compact('mahasiswa'));
     }
 
     /**

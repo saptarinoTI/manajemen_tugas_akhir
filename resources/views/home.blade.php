@@ -76,7 +76,7 @@
     @endhasrole
 
     @hasrole('superadmin|admin|staff|prodi')
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12 col-lg-4">
                 <div class="card">
                     <div class="card-body">
@@ -127,114 +127,99 @@
                         </div>
                         <h3 class="mt-3">{{ $pendadaran }} <span class="text-sm"
                                 style="color: #c2c2c2; font-size: 12px">Diterima</span></h3>
-                        {{-- <span>{{ date('Y m d', strtotime('+5 years')) }}</span> --}}
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div> --}}
 
         <div class="row">
-            <div class="col-12 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="fw-bold">Proposal Baru</h6>
-                            @if ($proposal != 0)
-                                <span style="color: #c2c2c2; font-size: 12px">Update :
-                                    {{ date('d M Y', strtotime((string) $updateMhs->updated_at)) }}</span>
-                            @else
-                                <strong>-</strong>
-                            @endif
+            {{-- Total Mhs. Terdaftar --}}
+            <div class="col-12 col-lg-4 col-md-6">
+                <a href="{{ route('data-mahasiswa.index') }}">
+                    <div class="card bg-primary">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="fw-bold text-white" style="letter-spacing: .1rem">Data Mhs. Terdaftar</h6>
+                            </div>
+                            <h4 class="mt-2 fw-bold text-white">{{ $totalMhs }}<span class="text-sm fw-normal"
+                                    style="color: #e8e8e8; font-size: 12px; letter-spacing: .07rem"> Mahasiswa</span></h4>
                         </div>
-                        <h3 class="mt-3">{{ $proposalProses }} <span class="text-sm"
-                                style="color: #c2c2c2; font-size: 12px">Orang</span></h3>
                     </div>
-                </div>
+                </a>
             </div>
 
-            <div class="col-12 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="fw-bold">Seminar Hasil Baru</h6>
-                            @if ($seminar != 0)
-                                <span style="color: #c2c2c2; font-size: 12px">Update :
-                                    {{ date('d M Y', strtotime((string) $updateSmnr->updated_at)) }}</span>
-                            @else
-                                <strong>-</strong>
-                            @endif
+            {{-- Total Lulusan Tepat Waktu --}}
+            <div class="col-12 col-lg-4 col-md-6">
+                <a href="{{ route('data-lulus.index') }}">
+                    <div class="card bg-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="fw-bold text-white" style="letter-spacing: .1rem">Lulusan Tepat Waktu</h6>
+                            </div>
+                            <h4 class="mt-2 fw-bold text-white">{{ count($cepat) }}<span class="text-sm fw-normal"
+                                    style="color: #e8e8e8; font-size: 12px; letter-spacing: .07rem"> Mahasiswa</span></h4>
                         </div>
-                        <h3 class="mt-3">{{ $seminarProses }} <span class="text-sm"
-                                style="color: #c2c2c2; font-size: 12px">Diterima</span></h3>
                     </div>
-                </div>
+                </a>
             </div>
 
-            <div class="col-12 col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h6 class="fw-bold">Pendadaran Baru</h6>
-                            @if ($pendadaran != 0)
-                                <span style="color: #c2c2c2; font-size: 12px">Update :
-                                    {{ date('d M Y', strtotime((string) $updatePddrn->updated_at)) }}</span>
-                            @else
-                                <strong>-</strong>
-                            @endif
+            {{-- Total Lulusan Terlambat --}}
+            <div class="col-12 col-lg-4 col-md-6">
+                <a href="{{ route('data-lulus.index') }}">
+                    <div class="card bg-danger">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="fw-bold text-white" style="letter-spacing: .1rem">Lulusan Terlambat</h6>
+                            </div>
+                            <h4 class="mt-2 fw-bold text-white">{{ count($lambat) }}<span class="text-sm fw-normal"
+                                    style="color: #e8e8e8; font-size: 12px; letter-spacing: .07rem"> Mahasiswa</span></h4>
                         </div>
-                        <h3 class="mt-3">{{ $pendadaranProses }} <span class="text-sm"
-                                style="color: #c2c2c2; font-size: 12px">Diterima</span></h3>
-                        {{-- <span>{{ date('Y m d', strtotime('+5 years')) }}</span> --}}
                     </div>
-                </div>
+                </a>
             </div>
-
         </div>
-
         <div class="row">
             <div class="ol">
                 <div class="card py-3 px-5">
                     <canvas id="canvas" height="280" width="700"></canvas>
                 </div>
             </div>
-        @endhasrole
+        </div>
+    @endhasrole
 
-        @push('script')
-            <script>
-                var label = {!! $label !!};
-                var user = {!! $user !!};
-                var barChartData = {
-                    labels: label,
-                    datasets: [{
-                        label: "Lulus",
-                        backgroundColor: "#A7E9AF",
-                        data: user
-                    }]
-                };
+    @push('script')
+        <script>
+            var label = {!! $label !!};
+            var user = {!! $user !!};
+            var barChartData = {
+                labels: label,
+                datasets: [{
+                    label: "Lulus",
+                    backgroundColor: "#A7E9AF",
+                    data: user
+                }]
+            };
 
-                window.onload = function() {
-                    var ctx = document.getElementById("canvas").getContext("2d");
-                    window.myBar = new Chart(ctx, {
-                        type: 'bar',
-                        data: barChartData,
-                        options: {
-                            elements: {
-                                rectangle: {
-                                    borderWidth: 1,
-                                    borderColor: '#75B79E',
-                                    borderSkipped: 'bottom'
-                                }
+            window.onload = function() {
+                var ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData,
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
                             },
-                            responsive: true,
                             title: {
                                 display: true,
-                                text: 'Yearly User Joined'
+                                text: 'Lulusan Berdasarkan Tahun'
                             }
                         }
-                    });
-                };
-            </script>
-        @endpush
+                    },
+                });
+            };
+        </script>
+    @endpush
 
 </x-app-layout>
