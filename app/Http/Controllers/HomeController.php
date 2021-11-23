@@ -18,7 +18,7 @@ class HomeController extends Controller
         if (auth()->user()->hasRole('superadmin|admin|mahasiswa|staff|prodi')) {
             $totalMhs = Mahasiswa::count();
             $totalPen = Pendadaran::count();
-            $pendadaran = Pendadaran::all();
+            $pendadaran = Pendadaran::where('status', '=', 'diterima')->get();
             $cepat = [];
             $lambat = [];
             foreach ($pendadaran as $pen) {
@@ -49,13 +49,6 @@ class HomeController extends Controller
                 ->count();
             $pendamping = Proposal::where('pendamping_id', '=', $idDosen)
                 ->count();
-
-            $user = [];
-            $label = [date('Y') - 2, date('Y') - 1, date('Y'), date('Y') + 1, date('Y') + 2];
-            foreach ($label as $key => $value) {
-                $user[] = Pendadaran::where(DB::raw("DATE_FORMAT(updated_at, '%Y')"), $value)->count();
-            }
-
             return view('dosen.home', compact('pro', 'utama', 'pendamping'));
         }
     }

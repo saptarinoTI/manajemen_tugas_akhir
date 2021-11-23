@@ -33,7 +33,10 @@ class DataDosenController extends Controller
                         return 'Pendamping';
                     }
                 })
-                ->rawColumns(['nama', 'judul', 'status'])
+                ->addColumn('tgl', function ($row) {
+                    return date('Y', strtotime($row->tgl_terima));
+                })
+                ->rawColumns(['nama', 'judul', 'status', 'tgl'])
                 ->make(true);
         }
         return view('dosen.bimbingan.index');

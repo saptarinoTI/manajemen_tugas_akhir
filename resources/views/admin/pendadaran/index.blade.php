@@ -28,6 +28,9 @@
             $(function() {
                 var table = $('#table1').DataTable({
                     processing: true,
+                    order: [
+                        [2, "asc"]
+                    ],
                     serverSide: true,
                     responsive: true,
                     bLengthChange: false,

@@ -11,6 +11,7 @@
                             <th>Nama</th>
                             <th>Judul Skripsi</th>
                             <th>Pemb.</th>
+                            <th>Tahun</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,7 +40,10 @@
                     }, {
                         data: 'status',
                         name: 'status'
-                    }, ]
+                    }, {
+                        data: 'tgl',
+                        name: 'tgl',
+                    }]
                 });
             });
         </script>
