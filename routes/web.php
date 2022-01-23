@@ -46,7 +46,7 @@ Route::get('/', function () {
 });
 
 // Daftar Judul Tugas Akhir
-Route::get('judul-ta', [JudulTugasAkhirController::class, 'index'])->name('judul-ta.index');
+Route::get('skripsi', [JudulTugasAkhirController::class, 'index'])->name('judul-ta.index');
 
 // Add Email
 Route::get('/add-email', [AddEmailController::class, 'index'])->name('add-email');
